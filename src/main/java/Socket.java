@@ -12,11 +12,12 @@ import java.util.Map;
 
 public class Socket extends Emitter{
 
-    int cid=1;
+    int cid;
     String URL;
     WebSocketFactory factory;
     WebSocket ws;
     BasicListener listener;
+    String AuthToken;
 
     public Socket(String URL) {
         this.URL = URL;
@@ -31,18 +32,16 @@ public class Socket extends Emitter{
         this.listener=listener;
     }
 
-    public Socket send(String event,JSONObject object){
+    public void setAuthToken(String token){
+        AuthToken=token;
+    }
+    public Socket emit(String event,Object object){
         JSONObject eventObject=new JSONObject();
         eventObject.put("event",event);
         eventObject.put("data",object);
         eventObject.put("cid",cid++);
         ws.sendText(eventObject.toJSONString());
 //        socket.sendText("{\"event\":\""+eventname+"\",\"data\":\""+data+"\",\"cid\":"+ cid++ +"}");
-        return this;
-    }
-
-    public Socket send(String event,String data){
-        ws.sendText("{\"event\":\""+event+"\",\"data\":\""+data+"\",\"cid\":"+ cid++ +"}");
         return this;
     }
 
@@ -57,6 +56,17 @@ public class Socket extends Emitter{
         ws.sendText(subscribeObject.toJSONString());
 //        ws.sendText("{\"event\":\"#subscribe\",\"data\":{\"channel\":\""+channel+"\"},\"cid\":"+cid++ +"}");
         this.on(channel,listener);
+        return this;
+    }
+
+    public Socket unsubscribe(String channel){
+        JSONObject subscribeObject=new JSONObject();
+        subscribeObject.put("event","#unsubscribe");
+        JSONObject object=new JSONObject();
+        object.put("channel",channel);
+        subscribeObject.put("data",object);
+        subscribeObject.put("cid",cid++);
+        ws.sendText(subscribeObject.toJSONString());
         return this;
     }
 
@@ -93,13 +103,17 @@ public class Socket extends Emitter{
                  * Code for sending handshake
                  */
 
-                JSONObject object=new JSONObject();
-                object.put("event","#handshake");
-                object.put("data",new JSONObject().put("authToken",null));
-                object.put("cid",cid++);
-                websocket.sendText(object.toJSONString());
+                cid=1;
 
-//                websocket.sendText("{\"event\": \"#handshake\",\"data\": {\"authToken\":null},\"cid\": "+ cid++ +"}");
+                JSONObject handshakeObject=new JSONObject();
+                handshakeObject.put("event","#handshake");
+                JSONObject object=new JSONObject();
+                object.put("authToken",AuthToken);
+                handshakeObject.put("data",object);
+                handshakeObject.put("cid",cid++);
+                websocket.sendText(handshakeObject.toJSONString());
+
+//                websocket.sendText("{\"event\": \"#handshake\",\"data\": {\"authToken\":\""+AuthToken+"\"},\"cid\": "+ cid++ +"}");
 
                 listener.onConnected(headers);
 
@@ -147,15 +161,20 @@ public class Socket extends Emitter{
                      * Message retrieval mechanism goes here
                      */
 
-
-                    if (((String)object.get("event")).equals("#publish")){
-
-                        JSONObject dataobject=(JSONObject)object.get("data");
-                        Socket.this.emit(String.valueOf((dataobject.get("channel"))),dataobject.get("data"));
-
-                    }else{
-                        Socket.this.emit((String) object.get("event"),object.get("data"));
-                    }
+                        JSONObject dataobject = (JSONObject) object.get("data");
+                        if (dataobject.get("isAuthenticated")!=null){
+                            listener.onAuthentication((Boolean) dataobject.get("isAuthenticated"));
+                        }else {
+                            if (((String) object.get("event")).equals("#publish")) {
+                                Socket.this.handleEmit(String.valueOf((dataobject.get("channel"))), dataobject.get("data"));
+                            } else if (((String) object.get("event")).equals("#removeAuthToken")) {
+                                setAuthToken(null);
+                            } else if (((String) object.get("event")).equals("#setAuthToken")) {
+                                listener.onSetAuthToken((String) dataobject.get("token"));
+                            } else {
+                                Socket.this.handleEmit((String) object.get("event"), object.get("data"));
+                            }
+                        }
 
                 }
                 super.onFrame(websocket, frame);
@@ -294,6 +313,10 @@ public class Socket extends Emitter{
 
             System.out.println("Failed to establish a WebSocket connection "+e.getError());
         }
+    }
+
+    public void disconnect(){
+        ws.disconnect();
     }
 
 }

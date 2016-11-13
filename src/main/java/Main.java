@@ -1,22 +1,20 @@
-import com.neovisionaries.ws.client.*;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.neovisionaries.ws.client.WebSocketException;
+import com.neovisionaries.ws.client.WebSocketFrame;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by sachin on 8/11/16.
  */
 
 public class Main {
+
     public static String url="ws://localhost:8000/socketcluster/";
 
     public static void main(String arg[]) throws IOException {
 
-        Socket socket=new Socket(url);
+        final Socket socket=new Socket(url);
         socket.setListener(new BasicListener() {
 
             public void onConnected(Map<String, List<String>> headers) {
@@ -30,6 +28,19 @@ public class Main {
             public void onConnectError(WebSocketException exception) {
                 System.out.println("Got connect error");
             }
+
+            public void onSetAuthToken(String token) {
+                socket.setAuthToken(token);
+            }
+
+            public void onAuthentication(Boolean status) {
+                if (status){
+                    System.out.println("Socket is authenticated");
+                }else{
+                    System.out.println("Authentication is required (optional)");
+                }
+            }
+
         });
 
         socket.connect();
@@ -46,12 +57,30 @@ public class Main {
             }
         });
 
+
         while (true) {
             Scanner scanner=new Scanner(System.in);
 //            socket.send("chat",scanner.nextLine());
             socket.publish("yell",scanner.nextLine());
         }
 
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                socket.disconnect();
+//            }
+//        },2000);
+//
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                try {
+//                    socket.connect();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        },4000);
     }
 
 }

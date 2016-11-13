@@ -111,7 +111,7 @@ public class Emitter {
      * @param args
      * @return a reference to this object.
      */
-    public Emitter emit(String event, Object... args) {
+    public Emitter handleEmit(String event, Object... args) {
         ConcurrentLinkedQueue<Listener> callbacks = this.callbacks.get(event);
         if (callbacks != null) {
             for (Listener fn : callbacks) {
