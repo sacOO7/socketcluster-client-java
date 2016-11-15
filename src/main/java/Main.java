@@ -15,6 +15,7 @@ public class Main {
     public static void main(String arg[]) throws IOException {
 
         final Socket socket=new Socket(url);
+
         socket.setListener(new BasicListener() {
 
             public void onConnected(Map<String, List<String>> headers) {
@@ -46,22 +47,32 @@ public class Main {
         socket.connect();
 
         socket.subscribe("yell", new Emitter.Listener() {
-            public void call(Object... args) {
-                System.out.println("Got publish :: " +args[0]);
+            public void call(Object object) {
+                System.out.println("Got publish :: " +object);
             }
         });
 
         socket.on("chat", new Emitter.Listener() {
-            public void call(Object... args) {
-                System.out.println("Got echo event :: " +args[0]);
+            public void call(Object object) {
+                System.out.println("Got echo event :: " +object);
             }
         });
+
+//        socket.on("ping", new Emitter.Listener() {
+//            public void call(Object... args) {
+//                System.out.println("Got the message"+args[0]);
+//            }
+//        });
 
 
         while (true) {
             Scanner scanner=new Scanner(System.in);
-//            socket.send("chat",scanner.nextLine());
-            socket.publish("yell",scanner.nextLine());
+            socket.emit("chat", scanner.nextLine(), new Ack() {
+                public void call(Object error, Object data) {
+                    System.out.println("Error is "+error+" and data is "+ data);
+                }
+            });
+//            socket.publish("yell",scanner.nextLine());
         }
 
 //        new Timer().schedule(new TimerTask() {

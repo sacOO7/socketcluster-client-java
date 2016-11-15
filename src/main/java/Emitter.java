@@ -108,16 +108,21 @@ public class Emitter {
      * Executes each of listeners with the given args.
      *
      * @param event an event name.
-     * @param args
+     * @param object
      * @return a reference to this object.
      */
-    public Emitter handleEmit(String event, Object... args) {
+    public Emitter handleEmit(String event, Object object) {
         ConcurrentLinkedQueue<Listener> callbacks = this.callbacks.get(event);
         if (callbacks != null) {
             for (Listener fn : callbacks) {
-                fn.call(args);
+                fn.call(object);
             }
         }
+        /**
+         * Todo
+         * Add here a above code to search the key in callbacks and according add the aclnowledgement
+         */
+
         return this;
     }
 
@@ -145,8 +150,11 @@ public class Emitter {
     }
 
     public interface Listener {
+        void call(Object object);
+    }
 
-        public void call(Object... args);
+    public interface AckListener {
+        void call (Object object,Ack ack);
     }
 
     private class OnceListener implements Listener {
@@ -160,9 +168,9 @@ public class Emitter {
         }
 
 
-        public void call(Object... args) {
+        public void call(Object object) {
             Emitter.this.off(this.event, this);
-            this.fn.call(args);
+            this.fn.call(object);
         }
     }
 }
