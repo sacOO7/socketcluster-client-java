@@ -46,11 +46,19 @@ public class Main {
 
         socket.connect();
 
-        socket.subscribe("yell", new Emitter.Listener() {
+        socket.ackSubscribe("yell", new Emitter.Listener() {
             public void call(Object object) {
-                System.out.println("Got publish :: " +object);
+                System.out.println("Got publish :: " + object);
+            }
+        }, new Ack() {
+            public void call(Object error, Object data) {
+                if (error==null) {
+                    System.out.println("Subscribed to channel successfully");
+                }
             }
         });
+
+
 
         socket.on("chat", new Emitter.Listener() {
             public void call(Object object) {
@@ -64,15 +72,27 @@ public class Main {
 //            }
 //        });
 
+//        socket.on("ping", new Emitter.AckListener() {
+//            public void call(Object object, Ack ack) {
+//                System.out.println("Got ping data "+object);
+//                ack.call("sample error","sample object");
+//            }
+//        });
 
         while (true) {
             Scanner scanner=new Scanner(System.in);
-            socket.emit("chat", scanner.nextLine(), new Ack() {
+//            socket.emit("chat", scanner.nextLine(), new Ack() {
+//                public void call(Object error, Object data) {
+//                    System.out.println("Error is "+error+" and data is "+ data);
+//                }
+//            });
+            socket.ackPublish("yell", scanner.nextLine(), new Ack() {
                 public void call(Object error, Object data) {
-                    System.out.println("Error is "+error+" and data is "+ data);
+                    if (error==null){
+                        System.out.println("Publish sent successfully");
+                    }
                 }
             });
-//            socket.publish("yell",scanner.nextLine());
         }
 
 //        new Timer().schedule(new TimerTask() {

@@ -20,6 +20,9 @@ public class Emitter {
     private ConcurrentMap<String, ConcurrentLinkedQueue<Listener>> callbacks
             = new ConcurrentHashMap<String, ConcurrentLinkedQueue<Listener>>();
 
+    private ConcurrentMap<String, ConcurrentLinkedQueue<AckListener>> ackcallbacks
+            = new ConcurrentHashMap<String, ConcurrentLinkedQueue<AckListener>>();
+
     /**
      * Listens on the event.
      * @param event event name.
@@ -36,6 +39,19 @@ public class Emitter {
             }
         }
         callbacks.add(fn);
+        return this;
+    }
+
+    public Emitter on(String event, AckListener fn) {
+        ConcurrentLinkedQueue<AckListener> ackcallbacks = this.ackcallbacks.get(event);
+        if (ackcallbacks == null) {
+            ackcallbacks = new ConcurrentLinkedQueue <AckListener>();
+            ConcurrentLinkedQueue<AckListener> _callbacks = this.ackcallbacks.putIfAbsent(event, ackcallbacks);
+            if (_callbacks != null) {
+                ackcallbacks = _callbacks;
+            }
+        }
+        ackcallbacks.add(fn);
         return this;
     }
 
@@ -125,6 +141,19 @@ public class Emitter {
 
         return this;
     }
+
+    public boolean hasEventAck(String event){
+        return this.ackcallbacks.get(event)!=null;
+    };
+
+    public Emitter handleEmitAck(String event, Object object , Ack ack){
+        ConcurrentLinkedQueue<AckListener> callbacks = this.ackcallbacks.get(event);
+            for (AckListener fn : callbacks) {
+                fn.call(object,ack);
+            }
+        return this;
+    }
+
 
     /**
      * Returns a list of listeners for the specified event.

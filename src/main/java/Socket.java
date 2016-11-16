@@ -81,6 +81,26 @@ public class Socket extends Emitter{
                 JSONObject object=new JSONObject();
                 object.put("channel",channel);
                 subscribeObject.put("data",object);
+
+                subscribeObject.put("cid",counter.getAndIncrement());
+                ws.sendText(subscribeObject.toJSONString());
+            }
+        });
+//        ws.sendText("{\"event\":\"#subscribe\",\"data\":{\"channel\":\""+channel+"\"},\"cid\":"+cid++ +"}");
+        this.on(channel,listener);
+        return this;
+    }
+
+    public Socket ackSubscribe(final String channel, Listener listener, final Ack ack){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject subscribeObject=new JSONObject();
+                subscribeObject.put("event","#subscribe");
+                JSONObject object=new JSONObject();
+                acks.put(counter.longValue(),ack);
+
+                object.put("channel",channel);
+                subscribeObject.put("data",object);
                 subscribeObject.put("cid",counter.getAndIncrement());
                 ws.sendText(subscribeObject.toJSONString());
             }
@@ -114,6 +134,7 @@ public class Socket extends Emitter{
                 object.put("channel",channel);
                 object.put("data",data);
                 publishObject.put("data",object);
+                publishObject.put("cid",counter.getAndIncrement());
                 ws.sendText(publishObject.toJSONString());
             }
         });
@@ -121,6 +142,26 @@ public class Socket extends Emitter{
 //        ws.sendText("{\"event\":\"#publish\",\"data\":{\"channel\":\""+channel+"\",\"data\":\""+data+"\"}}");
         return this;
     }
+
+    public Socket ackPublish (final String channel, final Object data,final  Ack ack){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject publishObject=new JSONObject();
+                publishObject.put("event","#publish");
+                JSONObject object=new JSONObject();
+                acks.put(counter.longValue(),ack);
+                object.put("channel",channel);
+                object.put("data",data);
+                publishObject.put("data",object);
+                publishObject.put("cid",counter.getAndIncrement());
+                ws.sendText(publishObject.toJSONString());
+            }
+        });
+
+//        ws.sendText("{\"event\":\"#publish\",\"data\":{\"channel\":\""+channel+"\",\"data\":\""+data+"\"}}");
+        return this;
+    }
+
 
 
     public Emitter on(String event, Listener fn , Ack ack) {
@@ -229,7 +270,13 @@ public class Socket extends Emitter{
                             listener.onSetAuthToken((String) ((JSONObject)dataobject).get("token"));
                             break;
                         case EVENT:
-                            Socket.this.handleEmit((String) object.get("event"), object.get("data"));
+                            if (hasEventAck(event)) {
+                                System.out.println("This event has ack");
+                                handleEmitAck(event,dataobject,ack(cid));
+                            }else {
+                                Socket.this.handleEmit(event, dataobject);
+                                System.out.println("This ack doesnt have ack");
+                            }
                             break;
                         case ACKRECEIVE:
 
@@ -251,6 +298,21 @@ public class Socket extends Emitter{
             }
 
 
+            public Ack ack(final Long cid){
+                return new Ack() {
+                    public void call(final Object error, final Object data) {
+                        EventThread.exec(new Runnable() {
+                            public void run() {
+                                JSONObject object=new JSONObject();
+                                object.put("error",error);
+                                object.put("data",data);
+                                object.put("rid",cid);
+                                ws.sendText(object.toJSONString());
+                            }
+                        });
+                    }
+                };
+            }
             @Override
             public void onContinuationFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
                 System.out.println("On continuation frame got called");
