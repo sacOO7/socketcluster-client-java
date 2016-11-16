@@ -17,6 +17,7 @@ public class Socket extends Emitter{
     AtomicInteger counter;
     String URL;
     WebSocketFactory factory;
+    ReconnectStrategy strategy;
     WebSocket ws;
     BasicListener listener;
     String AuthToken;
@@ -27,10 +28,16 @@ public class Socket extends Emitter{
         factory=new WebSocketFactory().setConnectionTimeout(5000);
         counter=new AtomicInteger(1);
         acks=new HashMap<Long, Ack>();
+        strategy=new ReconnectStrategy();
+//        strategy.setMaxAttempts(5);
     }
 
     public void seturl(String url){
         this.URL=url;
+    }
+
+    public void setStrategy(ReconnectStrategy strategy) {
+        this.strategy = strategy;
     }
 
     public void setListener(BasicListener listener){
@@ -44,6 +51,7 @@ public class Socket extends Emitter{
     public void setAuthToken(String token){
         AuthToken=token;
     }
+
     public Socket emit(final String event, final Object object){
         EventThread.exec(new Runnable() {
             public void run() {
@@ -162,16 +170,29 @@ public class Socket extends Emitter{
         return this;
     }
 
-
-
-    public Emitter on(String event, Listener fn , Ack ack) {
-
-        return super.on(event, fn);
+    public Ack ack(final Long cid){
+        return new Ack() {
+            public void call(final Object error, final Object data) {
+                EventThread.exec(new Runnable() {
+                    public void run() {
+                        JSONObject object=new JSONObject();
+                        object.put("error",error);
+                        object.put("data",data);
+                        object.put("rid",cid);
+                        ws.sendText(object.toJSONString());
+                    }
+                });
+            }
+        };
     }
 
-    public void connect() throws IOException {
+    public void connect() {
 
-        ws=factory.createSocket("ws://localhost:8000/socketcluster/");
+        try {
+            ws = factory.createSocket("ws://localhost:8000/socketcluster/");
+        }catch (IOException e){
+            System.out.printf(e.getMessage());
+        }
         ws.addExtension("permessage-deflate; client_max_window_bits");
         ws.addHeader("Accept-Encoding","gzip, deflate, sdch");
         ws.addHeader("Accept-Language","en-US,en;q=0.8");
@@ -202,19 +223,20 @@ public class Socket extends Emitter{
 
                 listener.onConnected(headers);
 
-
                 super.onConnected(websocket, headers);
             }
 
             @Override
             public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) throws Exception {
                 listener.onDisconnected(serverCloseFrame,clientCloseFrame,closedByServer);
+                reconnect();
                 super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer);
             }
 
             @Override
             public void onConnectError(WebSocket websocket, WebSocketException exception) throws Exception {
                 listener.onConnectError(exception);
+                reconnect();
                 super.onConnectError(websocket, exception);
             }
 
@@ -224,11 +246,7 @@ public class Socket extends Emitter{
                 super.onStateChanged(websocket, newState);
             }
 
-            @Override
-            public void onPingFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                System.out.println("Ping frame received");
-                super.onPingFrame(websocket, frame);
-            }
+
 
             @Override
             public void onFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
@@ -267,7 +285,7 @@ public class Socket extends Emitter{
                             setAuthToken(null);
                             break;
                         case SETTOKEN:
-                            listener.onSetAuthToken((String) ((JSONObject)dataobject).get("token"));
+                            listener.onSetAuthToken((String) ((JSONObject)dataobject).get("token"),Socket.this);
                             break;
                         case EVENT:
                             if (hasEventAck(event)) {
@@ -298,92 +316,10 @@ public class Socket extends Emitter{
             }
 
 
-            public Ack ack(final Long cid){
-                return new Ack() {
-                    public void call(final Object error, final Object data) {
-                        EventThread.exec(new Runnable() {
-                            public void run() {
-                                JSONObject object=new JSONObject();
-                                object.put("error",error);
-                                object.put("data",data);
-                                object.put("rid",cid);
-                                ws.sendText(object.toJSONString());
-                            }
-                        });
-                    }
-                };
-            }
-            @Override
-            public void onContinuationFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                System.out.println("On continuation frame got called");
-                super.onContinuationFrame(websocket, frame);
-            }
-
-            @Override
-            public void onTextFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-//                System.out.println("On text frame got called :"+frame.getPayloadText());
-                super.onTextFrame(websocket, frame);
-            }
-
-            @Override
-            public void onBinaryFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                System.out.println("On binary frame got called");
-                super.onBinaryFrame(websocket, frame);
-            }
-
             @Override
             public void onCloseFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
                 System.out.println("On close frame got called");
                 super.onCloseFrame(websocket, frame);
-            }
-
-            @Override
-            public void onPongFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                System.out.println("On pong frame got called");
-                super.onPongFrame(websocket, frame);
-            }
-
-            @Override
-            public void onBinaryMessage(WebSocket websocket, byte[] binary) throws Exception {
-                System.out.println("On binary frame got called");
-                super.onBinaryMessage(websocket, binary);
-            }
-
-
-            @Override
-            public void onFrameUnsent(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                System.out.println("On frame unsent got called");
-                super.onFrameUnsent(websocket, frame);
-            }
-
-            @Override
-            public void onError(WebSocket websocket, WebSocketException cause) throws Exception {
-                System.out.println("On error got called");
-                super.onError(websocket, cause);
-            }
-
-            @Override
-            public void onFrameError(WebSocket websocket, WebSocketException cause, WebSocketFrame frame) throws Exception {
-                System.out.println("Got onframe error");
-                super.onFrameError(websocket, cause, frame);
-            }
-
-            @Override
-            public void onMessageError(WebSocket websocket, WebSocketException cause, List<WebSocketFrame> frames) throws Exception {
-                System.out.println("Got message error");
-                super.onMessageError(websocket, cause, frames);
-            }
-
-            @Override
-            public void onMessageDecompressionError(WebSocket websocket, WebSocketException cause, byte[] compressed) throws Exception {
-                System.out.println("Got message decompression error");
-                super.onMessageDecompressionError(websocket, cause, compressed);
-            }
-
-            @Override
-            public void onTextMessageError(WebSocket websocket, WebSocketException cause, byte[] data) throws Exception {
-                System.out.println("Got text message error");
-                super.onTextMessageError(websocket, cause, data);
             }
 
             @Override
@@ -392,14 +328,13 @@ public class Socket extends Emitter{
                 super.onSendError(websocket, cause, frame);
             }
 
-            @Override
-            public void onUnexpectedError(WebSocket websocket, WebSocketException cause) throws Exception {
-                System.out.println("Got unexpected error");
-                super.onUnexpectedError(websocket, cause);
-            }
-
         });
 
+        handleConnect();
+
+    }
+
+    private void handleConnect(){
         try {
             ws.connect();
         }catch (OpeningHandshakeException e)
@@ -444,10 +379,23 @@ public class Socket extends Emitter{
             // Failed to establish a WebSocket connection.
 
             System.out.println("Failed to establish a WebSocket connection "+e.getError());
+            reconnect();
         }
     }
 
+    public void reconnect(){
 
+        if (!strategy.areAttemptsComplete()) {
+            strategy.setListener(new ReconnectStrategy.Callback() {
+                public void connect()  {
+                    System.out.println("reconnect got called");
+                    Socket.this.connect();
+                }
+            });
+        }else{
+            System.out.println("Attempts are complete");
+        }
+    }
     public void disconnect(){
         ws.disconnect();
     }

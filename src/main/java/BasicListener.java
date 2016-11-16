@@ -12,5 +12,5 @@ public interface BasicListener{
     public void onDisconnected(WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer);
     public void onConnectError(WebSocketException exception);
     public void onAuthentication(Boolean status);
-    public void onSetAuthToken(String token);
+    public void onSetAuthToken(String token,Socket socket);
 }

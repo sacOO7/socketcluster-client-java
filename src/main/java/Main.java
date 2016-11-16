@@ -10,11 +10,11 @@ import java.util.*;
 
 public class Main {
 
-    public static String url="ws://localhost:8000/socketcluster/";
+    public static String url="ws://localhos:8000/socketcluster/";
 
-    public static void main(String arg[]) throws IOException {
+    public static void main(String arg[])  {
 
-        final Socket socket=new Socket(url);
+        Socket socket=new Socket(url);
 
         socket.setListener(new BasicListener() {
 
@@ -30,7 +30,7 @@ public class Main {
                 System.out.println("Got connect error");
             }
 
-            public void onSetAuthToken(String token) {
+            public void onSetAuthToken(String token,Socket socket) {
                 socket.setAuthToken(token);
             }
 
