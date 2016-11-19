@@ -23,7 +23,7 @@ Create instance of `Socket` class by passing url of socketcluster-server end-poi
 
 #### Registering basic listeners
  
-Implemented using BasicListener interface
+Implemented using `BasicListener` interface
 
 ```java
         socket.setListener(new BasicListener() {
@@ -57,14 +57,14 @@ Implemented using BasicListener interface
 
 #### Connecting to server
 
-- For connecting to a server use :
+- For connecting to server:
 
 ```java
     //This will send websocket handshake request to socketcluster-server
     socket.connect();
 ```
 
-- By default reconnection to a server is not enabled , to enable it :
+- By default reconnection to server is not enabled , to enable it :
 
 ```java
     //This will set automatic-reconnection to server with delay of 2 seconds and repeating it for 30 times
@@ -82,7 +82,7 @@ Emitting and listening to events
 --------------------------------
 #### Event emitter
 
-- Eventname is name of event to be sent to server and message can be a String ,boolean ,Long or JSON-object
+- eventname is name of event and message can be String ,boolean ,Long or JSON-object
 
 ```java
     socket.emit(eventname,message);
@@ -90,7 +90,7 @@ Emitting and listening to events
     //socket.emit("chat","Hi");
 ```
 
-- To send event with acknowledgement for handling errors
+- To send event with acknowledgement
 
 ```java
     socket.emit(eventname, message, new Ack() {
@@ -102,7 +102,7 @@ Emitting and listening to events
 
 #### Event Listener
 
-- For listening to this event use :
+- For listening to events :
 
 The object received can be String , Boolean , Long or JSONObject.
 

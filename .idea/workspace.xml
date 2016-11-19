@@ -78,8 +78,8 @@
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="425">
-                <caret line="283" column="1" selection-start-line="283" selection-start-column="1" selection-end-line="283" selection-end-column="1" />
+              <first_editor relative-caret-position="281">
+                <caret line="276" column="5" selection-start-line="276" selection-start-column="5" selection-end-line="276" selection-end-column="5" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -977,7 +977,7 @@
       <workItem from="1479118378616" duration="963000" />
       <workItem from="1479231701992" duration="11833000" />
       <workItem from="1479271690028" duration="12365000" />
-      <workItem from="1479534253363" duration="13756000" />
+      <workItem from="1479534253363" duration="14440000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented pub-sub , event send and receive callbacks">
       <created>1479042410288</created>
@@ -1028,11 +1028,25 @@
       <option name="project" value="LOCAL" />
       <updated>1479550139323</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Updated readme">
+      <created>1479550431495</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1479550431495</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated readme again">
+      <created>1479550819429</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1479550819429</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89561000" />
+    <option name="totallyTimeSpent" value="90245000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -1086,7 +1100,9 @@
     <MESSAGE value="Added reconnection facility to the API ( Need to add subscribed channels again )" />
     <MESSAGE value="Added channel facility and subscription to channels on reconnection" />
     <MESSAGE value="Added readme :p" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added readme :p" />
+    <MESSAGE value="Updated readme" />
+    <MESSAGE value="Updated readme again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated readme again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1548,8 +1564,8 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="425">
-            <caret line="283" column="1" selection-start-line="283" selection-start-column="1" selection-end-line="283" selection-end-column="1" />
+          <first_editor relative-caret-position="281">
+            <caret line="276" column="5" selection-start-line="276" selection-start-column="5" selection-end-line="276" selection-end-column="5" />
             <folding />
           </first_editor>
           <second_editor />
