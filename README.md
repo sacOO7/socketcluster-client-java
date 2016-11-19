@@ -1,8 +1,13 @@
-java-socketcluster-client
-=========================
+Java and Android Socketcluster Client
+=====================================
 Overview
 --------
 This client provides following functionality
+
+- Support for emitting and listening to remote events
+- Automatic reconnection
+- Pub/sub
+- Authentication (JWT)
 
 Description
 -----------
@@ -52,13 +57,14 @@ Implemented using BasicListener interface
 
 #### Connecting to server
 
-For connecting to a server use :
+- For connecting to a server use :
+
 ```java
     //This will send websocket handshake request to socketcluster-server
     socket.connect();
 ```
 
-By default reconnection to a server is not enabled , to enable it :
+- By default reconnection to a server is not enabled , to enable it :
 
 ```java
     //This will set automatic-reconnection to server with delay of 2 seconds and repeating it for 30 times
@@ -66,7 +72,7 @@ By default reconnection to a server is not enabled , to enable it :
     socket.connect();
 ```
 
-To disable reconnection :
+- To disable reconnection :
 
 ```
    socket.setReconnection(null); 
@@ -76,7 +82,7 @@ To disable reconnection :
 
 ###### Event emitter
 
-Eventname is name of event to be sent to server and message can be a String ,boolean ,Long or JSON-object
+- Eventname is name of event to be sent to server and message can be a String ,boolean ,Long or JSON-object
 
 ```java
     socket.emit(eventname,message);
@@ -84,7 +90,7 @@ Eventname is name of event to be sent to server and message can be a String ,boo
     //socket.emit("chat","Hi");
 ```
 
-To send event with acknowledgement for handling errors
+- To send event with acknowledgement for handling errors
 
 ```java
     socket.emit(eventname, message, new Ack() {
@@ -96,7 +102,7 @@ To send event with acknowledgement for handling errors
 
 ###### Event Listener
 
-For listening to this event use :
+- For listening to this event use :
 
 The object received can be String , Boolean , Long or JSONObject.
 
@@ -111,7 +117,7 @@ The object received can be String , Boolean , Long or JSONObject.
         }); 
 ```
 
-To send acknowledgement back to server
+- To send acknowledgement back to server
 
 ```java
     socket.on(eventname, new Emitter.AckListener() {
@@ -148,7 +154,7 @@ To send acknowledgement back to server
 
 ###### Creating channel
 
-For creating and subscribing to channels:
+- For creating and subscribing to channels:
 
 ```java
     Socket.Channel channel = socket.createChannel(channelName);
@@ -163,13 +169,13 @@ For creating and subscribing to channels:
         });
 ```
 
-For getting list of created channels :
+- For getting list of created channels :
  
 ```java
     List <Socket.Channel> channels=socket.getChannels();
 ``` 
 
-To get channel by name :
+- To get channel by name :
 
 ```java
         Socket.Channel channel=socket.getChannelByName("yolo");
@@ -181,7 +187,8 @@ To get channel by name :
 
 
 ###### Publishing event on channel
-For publishing event :
+
+- For publishing event :
 
 ```java
        // message can have any data type
@@ -198,7 +205,7 @@ For publishing event :
  
 ###### Listening to channel
 
-For listening to channel event :
+- For listening to channel event :
 
 ```java
     channel.onMessage(new Emitter.Listener() {
