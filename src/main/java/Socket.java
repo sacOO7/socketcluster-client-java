@@ -3,9 +3,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -14,29 +12,49 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Socket extends Emitter{
 
-    AtomicInteger counter;
-    String URL;
-    WebSocketFactory factory;
-    ReconnectStrategy strategy;
-    WebSocket ws;
-    BasicListener listener;
-    String AuthToken;
-    HashMap <Long,Ack> acks;
+    private AtomicInteger counter;
+    private String URL;
+    private WebSocketFactory factory;
+    private ReconnectStrategy strategy;
+    private WebSocket ws;
+    private BasicListener listener;
+    private String AuthToken;
+    private HashMap <Long,Ack> acks;
+    private List <Channel> channels;
+    private WebSocketAdapter adapter;
 
     public Socket(String URL) {
         this.URL = URL;
         factory=new WebSocketFactory().setConnectionTimeout(5000);
         counter=new AtomicInteger(1);
         acks=new HashMap<Long, Ack>();
-        strategy=new ReconnectStrategy();
-//        strategy.setMaxAttempts(5);
+        channels=new ArrayList<Channel>();
+        adapter=getAdapter();
+    }
+
+    public Channel createChannel(String name){
+        Channel channel=new Channel(name);
+        channels.add(channel);
+        return channel;
+    }
+
+    public List<Channel> getChannels() {
+        return channels;
+    }
+
+    public Channel getChannelByName(String name){
+        for (Channel channel:channels){
+            if (channel.getChannelName().equals(name))
+                return channel;
+        }
+        return null;
     }
 
     public void seturl(String url){
         this.URL=url;
     }
 
-    public void setStrategy(ReconnectStrategy strategy) {
+    public void setReconnection(ReconnectStrategy strategy) {
         this.strategy = strategy;
     }
 
@@ -44,163 +62,21 @@ public class Socket extends Emitter{
         this.listener=listener;
     }
 
-    public WebSocket getInnnerWebsocketInstance(){
-        return ws;
+    /**
+     * used to set up TLS/SSL connection to server for more details visit neovisionaries websocket client
+     * @return
+     */
+
+    public WebSocketFactory getFactorySettings(){
+        return factory;
     }
 
     public void setAuthToken(String token){
         AuthToken=token;
     }
 
-    public Socket emit(final String event, final Object object){
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject eventObject=new JSONObject();
-                eventObject.put("event",event);
-                eventObject.put("data",object);
-                eventObject.put("cid",counter.getAndIncrement());
-                ws.sendText(eventObject.toJSONString());
-            }
-        });
-//        socket.sendText("{\"event\":\""+eventname+"\",\"data\":\""+data+"\",\"cid\":"+ cid++ +"}");
-        return this;
-    }
-
-    public Socket emit(final String event, final Object object, final Ack ack){
-
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject eventObject=new JSONObject();
-                acks.put(counter.longValue(),ack);
-                eventObject.put("event",event);
-                eventObject.put("data",object);
-                eventObject.put("cid",counter.getAndIncrement());
-                ws.sendText(eventObject.toJSONString());
-            }
-        });
-        return this;
-    }
-
-    public Socket subscribe(final String channel, Listener listener){
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject subscribeObject=new JSONObject();
-                subscribeObject.put("event","#subscribe");
-                JSONObject object=new JSONObject();
-                object.put("channel",channel);
-                subscribeObject.put("data",object);
-
-                subscribeObject.put("cid",counter.getAndIncrement());
-                ws.sendText(subscribeObject.toJSONString());
-            }
-        });
-//        ws.sendText("{\"event\":\"#subscribe\",\"data\":{\"channel\":\""+channel+"\"},\"cid\":"+cid++ +"}");
-        this.on(channel,listener);
-        return this;
-    }
-
-    public Socket ackSubscribe(final String channel, Listener listener, final Ack ack){
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject subscribeObject=new JSONObject();
-                subscribeObject.put("event","#subscribe");
-                JSONObject object=new JSONObject();
-                acks.put(counter.longValue(),ack);
-
-                object.put("channel",channel);
-                subscribeObject.put("data",object);
-                subscribeObject.put("cid",counter.getAndIncrement());
-                ws.sendText(subscribeObject.toJSONString());
-            }
-        });
-//        ws.sendText("{\"event\":\"#subscribe\",\"data\":{\"channel\":\""+channel+"\"},\"cid\":"+cid++ +"}");
-        this.on(channel,listener);
-        return this;
-    }
-
-    public Socket unsubscribe(final String channel){
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject subscribeObject=new JSONObject();
-                subscribeObject.put("event","#unsubscribe");
-                JSONObject object=new JSONObject();
-                object.put("channel",channel);
-                subscribeObject.put("data",object);
-                subscribeObject.put("cid",counter.getAndIncrement());
-                ws.sendText(subscribeObject.toJSONString());
-            }
-        });
-        return this;
-    }
-
-    public Socket publish (final String channel, final Object data){
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject publishObject=new JSONObject();
-                publishObject.put("event","#publish");
-                JSONObject object=new JSONObject();
-                object.put("channel",channel);
-                object.put("data",data);
-                publishObject.put("data",object);
-                publishObject.put("cid",counter.getAndIncrement());
-                ws.sendText(publishObject.toJSONString());
-            }
-        });
-
-//        ws.sendText("{\"event\":\"#publish\",\"data\":{\"channel\":\""+channel+"\",\"data\":\""+data+"\"}}");
-        return this;
-    }
-
-    public Socket ackPublish (final String channel, final Object data,final  Ack ack){
-        EventThread.exec(new Runnable() {
-            public void run() {
-                JSONObject publishObject=new JSONObject();
-                publishObject.put("event","#publish");
-                JSONObject object=new JSONObject();
-                acks.put(counter.longValue(),ack);
-                object.put("channel",channel);
-                object.put("data",data);
-                publishObject.put("data",object);
-                publishObject.put("cid",counter.getAndIncrement());
-                ws.sendText(publishObject.toJSONString());
-            }
-        });
-
-//        ws.sendText("{\"event\":\"#publish\",\"data\":{\"channel\":\""+channel+"\",\"data\":\""+data+"\"}}");
-        return this;
-    }
-
-    public Ack ack(final Long cid){
-        return new Ack() {
-            public void call(final Object error, final Object data) {
-                EventThread.exec(new Runnable() {
-                    public void run() {
-                        JSONObject object=new JSONObject();
-                        object.put("error",error);
-                        object.put("data",data);
-                        object.put("rid",cid);
-                        ws.sendText(object.toJSONString());
-                    }
-                });
-            }
-        };
-    }
-
-    public void connect() {
-
-        try {
-            ws = factory.createSocket("ws://localhost:8000/socketcluster/");
-        }catch (IOException e){
-            System.out.printf(e.getMessage());
-        }
-        ws.addExtension("permessage-deflate; client_max_window_bits");
-        ws.addHeader("Accept-Encoding","gzip, deflate, sdch");
-        ws.addHeader("Accept-Language","en-US,en;q=0.8");
-        ws.addHeader("Pragma","no-cache");
-        ws.addHeader("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
-
-        ws.addListener(new WebSocketAdapter(){
-
+    public WebSocketAdapter getAdapter(){
+        return new WebSocketAdapter(){
 
             @Override
             public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
@@ -210,6 +86,8 @@ public class Socket extends Emitter{
                  */
 
                 counter.set(1);
+                if (strategy!=null)
+                strategy.setAttmptsMade(0);
 
                 JSONObject handshakeObject=new JSONObject();
                 handshakeObject.put("event","#handshake");
@@ -229,23 +107,24 @@ public class Socket extends Emitter{
             @Override
             public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) throws Exception {
                 listener.onDisconnected(serverCloseFrame,clientCloseFrame,closedByServer);
-                reconnect();
+                if (strategy!=null) {
+                    reconnect();
+                }else{
+                    System.out.println("cant reconnect , reconnection is null");
+                }
                 super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer);
             }
 
             @Override
             public void onConnectError(WebSocket websocket, WebSocketException exception) throws Exception {
                 listener.onConnectError(exception);
-                reconnect();
+                if (strategy!=null) {
+                    reconnect();
+                }else{
+                    System.out.println("cant reconnect , reconnection is null");
+                }
                 super.onConnectError(websocket, exception);
             }
-
-            @Override
-            public void onStateChanged(WebSocket websocket, WebSocketState newState) throws Exception {
-                System.out.println("New state is "+newState.name());
-                super.onStateChanged(websocket, newState);
-            }
-
 
 
             @Override
@@ -267,16 +146,17 @@ public class Socket extends Emitter{
                      */
 //                    System.out.println("new message :"+object.toJSONString());
 
-                        Object dataobject = object.get("data");
-                        Long rid = (Long) object.get("rid");
-                        Long cid = (Long) object.get("cid");
-                        String event = (String) object.get("event");
+                    Object dataobject = object.get("data");
+                    Long rid = (Long) object.get("rid");
+                    Long cid = (Long) object.get("cid");
+                    String event = (String) object.get("event");
 
 
                     switch (Parser.parse(dataobject,rid,cid,event)) {
 
                         case ISAUTHENTICATED:
                             listener.onAuthentication((Boolean) ((JSONObject)dataobject).get("isAuthenticated"));
+                            subscribeChannels();
                             break;
                         case PUBLISH:
                             Socket.this.handleEmit(String.valueOf((((JSONObject)dataobject).get("channel"))), ((JSONObject)dataobject).get("data"));
@@ -328,13 +208,163 @@ public class Socket extends Emitter{
                 super.onSendError(websocket, cause, frame);
             }
 
-        });
-
-        handleConnect();
+        };
 
     }
+    public Socket emit(final String event, final Object object){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject eventObject=new JSONObject();
+                eventObject.put("event",event);
+                eventObject.put("data",object);
+                eventObject.put("cid",counter.getAndIncrement());
+                ws.sendText(eventObject.toJSONString());
+            }
+        });
+//        socket.sendText("{\"event\":\""+eventname+"\",\"data\":\""+data+"\",\"cid\":"+ cid++ +"}");
+        return this;
+    }
 
-    private void handleConnect(){
+    public Socket emit(final String event, final Object object, final Ack ack){
+
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject eventObject=new JSONObject();
+                acks.put(counter.longValue(),ack);
+                eventObject.put("event",event);
+                eventObject.put("data",object);
+                eventObject.put("cid",counter.getAndIncrement());
+                ws.sendText(eventObject.toJSONString());
+            }
+        });
+        return this;
+    }
+
+    public Socket subscribe(final String channel){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject subscribeObject=new JSONObject();
+                subscribeObject.put("event","#subscribe");
+                JSONObject object=new JSONObject();
+                object.put("channel",channel);
+                subscribeObject.put("data",object);
+
+                subscribeObject.put("cid",counter.getAndIncrement());
+                ws.sendText(subscribeObject.toJSONString());
+            }
+        });
+//        ws.sendText("{\"event\":\"#subscribe\",\"data\":{\"channel\":\""+channel+"\"},\"cid\":"+cid++ +"}");
+        return this;
+    }
+
+    public Socket subscribe(final String channel, final Ack ack){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject subscribeObject=new JSONObject();
+                subscribeObject.put("event","#subscribe");
+                JSONObject object=new JSONObject();
+                acks.put(counter.longValue(),ack);
+
+                object.put("channel",channel);
+                subscribeObject.put("data",object);
+                subscribeObject.put("cid",counter.getAndIncrement());
+                ws.sendText(subscribeObject.toJSONString());
+            }
+        });
+//        ws.sendText("{\"event\":\"#subscribe\",\"data\":{\"channel\":\""+channel+"\"},\"cid\":"+cid++ +"}");
+        return this;
+    }
+
+    public Socket unsubscribe(final String channel){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject subscribeObject=new JSONObject();
+                subscribeObject.put("event","#unsubscribe");
+                JSONObject object=new JSONObject();
+                object.put("channel",channel);
+                subscribeObject.put("data",object);
+                subscribeObject.put("cid",counter.getAndIncrement());
+                ws.sendText(subscribeObject.toJSONString());
+            }
+        });
+        return this;
+    }
+
+    public Socket publish (final String channel, final Object data){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject publishObject=new JSONObject();
+                publishObject.put("event","#publish");
+                JSONObject object=new JSONObject();
+                object.put("channel",channel);
+                object.put("data",data);
+                publishObject.put("data",object);
+                publishObject.put("cid",counter.getAndIncrement());
+                ws.sendText(publishObject.toJSONString());
+            }
+        });
+
+//        ws.sendText("{\"event\":\"#publish\",\"data\":{\"channel\":\""+channel+"\",\"data\":\""+data+"\"}}");
+        return this;
+    }
+
+    public Socket publish (final String channel, final Object data,final  Ack ack){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject publishObject=new JSONObject();
+                publishObject.put("event","#publish");
+                JSONObject object=new JSONObject();
+                acks.put(counter.longValue(),ack);
+                object.put("channel",channel);
+                object.put("data",data);
+                publishObject.put("data",object);
+                publishObject.put("cid",counter.getAndIncrement());
+                ws.sendText(publishObject.toJSONString());
+            }
+        });
+
+//        ws.sendText("{\"event\":\"#publish\",\"data\":{\"channel\":\""+channel+"\",\"data\":\""+data+"\"}}");
+        return this;
+    }
+
+    public Ack ack(final Long cid){
+        return new Ack() {
+            public void call(final Object error, final Object data) {
+                EventThread.exec(new Runnable() {
+                    public void run() {
+                        JSONObject object=new JSONObject();
+                        object.put("error",error);
+                        object.put("data",data);
+                        object.put("rid",cid);
+                        ws.sendText(object.toJSONString());
+                    }
+                });
+            }
+        };
+    }
+
+
+    private void subscribeChannels(){
+        for (Channel channel:channels){
+            channel.subscribe();
+        }
+    }
+
+    public void connect() {
+
+        try {
+            ws = factory.createSocket("ws://localhost:8000/socketcluster/");
+        }catch (IOException e){
+            System.out.printf(e.getMessage());
+        }
+        ws.addExtension("permessage-deflate; client_max_window_bits");
+        ws.addHeader("Accept-Encoding","gzip, deflate, sdch");
+        ws.addHeader("Accept-Language","en-US,en;q=0.8");
+        ws.addHeader("Pragma","no-cache");
+        ws.addHeader("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
+
+        ws.addListener(adapter);
+
         try {
             ws.connect();
         }catch (OpeningHandshakeException e)
@@ -377,27 +407,84 @@ public class Socket extends Emitter{
         catch (WebSocketException e)
         {
             // Failed to establish a WebSocket connection.
-
-            System.out.println("Failed to establish a WebSocket connection "+e.getError());
-            reconnect();
+            listener.onConnectError(e);
+            if (strategy!=null) {
+                reconnect();
+            }else{
+                System.out.println("cant reconnect , reconnection is null");
+            }
         }
+
     }
+
 
     public void reconnect(){
 
+//        if (!strategy.areAttemptsComplete()) {
+//            strategy.setListener(new ReconnectStrategy.Callback() {
+//                public void connect()  {
+//                    System.out.println("reconnect got called");
+//                    Socket.this.connect();
+//                }
+//            });
+//        }else{
+//            System.out.println("Attempts are complete");
+//        }
+
         if (!strategy.areAttemptsComplete()) {
-            strategy.setListener(new ReconnectStrategy.Callback() {
-                public void connect()  {
-                    System.out.println("reconnect got called");
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    strategy.processValues();
                     Socket.this.connect();
                 }
-            });
-        }else{
-            System.out.println("Attempts are complete");
+            },strategy.getReconnectInterval());
         }
     }
+
     public void disconnect(){
         ws.disconnect();
     }
 
+    /**
+     * Channels need to be subscribed everytime when client is reconnected to server (handled inside)
+     * Add only one listener to one channel for whole lifetime of process
+     */
+
+    class Channel{
+
+        String channelName;
+
+        public String getChannelName() {
+            return channelName;
+        }
+
+        public Channel(String channelName) {
+            this.channelName = channelName;
+        }
+
+        public void subscribe(){
+            Socket.this.subscribe(channelName);
+        }
+
+        public void subscribe(Ack ack){
+            Socket.this.subscribe(channelName,ack);
+        }
+
+        public void onMessage(Listener listener){
+            Socket.this.on(channelName,listener);
+        }
+
+        public void publish(Object data){
+            Socket.this.publish(channelName,data);
+        }
+
+        public void publish(Object data,Ack ack){
+            Socket.this.publish(channelName,data,ack);
+        }
+
+        public void unsubscribe(){
+            Socket.this.unsubscribe(channelName);
+        }
+    }
 }
