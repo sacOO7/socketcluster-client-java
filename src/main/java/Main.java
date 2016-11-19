@@ -1,4 +1,5 @@
 import com.neovisionaries.ws.client.WebSocketException;
+import com.neovisionaries.ws.client.WebSocketFactory;
 import com.neovisionaries.ws.client.WebSocketFrame;
 
 import java.util.List;
@@ -49,7 +50,10 @@ public class Main {
 
         socket.connect();
 
+
+
         Socket.Channel channel = socket.createChannel("yell");
+
 
         channel.subscribe(new Ack() {
             public void call(Object error, Object data) {
@@ -72,6 +76,13 @@ public class Main {
             }
         });
 
+
+
+        socket.emit("chat", "hi", new Ack() {
+            public void call(Object error, Object data) {
+
+            }
+        });
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
