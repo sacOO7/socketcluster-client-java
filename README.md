@@ -78,9 +78,9 @@ Implemented using BasicListener interface
    socket.setReconnection(null); 
 ```
 
-#### Emitting and listening to events
-
-###### Event emitter
+Emitting and listening to events
+--------------------------------
+#### Event emitter
 
 - Eventname is name of event to be sent to server and message can be a String ,boolean ,Long or JSON-object
 
@@ -100,7 +100,7 @@ Implemented using BasicListener interface
         });
 ```
 
-###### Event Listener
+#### Event Listener
 
 - For listening to this event use :
 
@@ -150,9 +150,10 @@ The object received can be String , Boolean , Long or JSONObject.
         
 ```
 
-#### Implementing Pub-Sub via channels
+Implementing Pub-Sub via channels
+---------------------------------
 
-###### Creating channel
+#### Creating channel
 
 - For creating and subscribing to channels:
 
@@ -186,7 +187,7 @@ The object received can be String , Boolean , Long or JSONObject.
 
 
 
-###### Publishing event on channel
+#### Publishing event on channel
 
 - For publishing event :
 
@@ -203,7 +204,7 @@ The object received can be String , Boolean , Long or JSONObject.
         
 ``` 
  
-###### Listening to channel
+#### Listening to channel
 
 - For listening to channel event :
 
@@ -219,8 +220,8 @@ The object received can be String , Boolean , Long or JSONObject.
  
 #### Handling SSL connection with server
  
-`WebSocketFactory` class is responsible for creating websocket instances and handling settings with server.For more
-information visit [link](https://github.com/TakahikoKawasaki/nv-websocket-client/blob/master/README.md)
+`WebSocketFactory` class is responsible for creating websocket instances and handling settings with server, for more
+information visit [ here ](https://github.com/TakahikoKawasaki/nv-websocket-client/blob/master/README.md)
 
 To get instance of `WebSocketFactory` class :
 
