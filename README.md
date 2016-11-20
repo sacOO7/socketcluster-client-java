@@ -9,6 +9,8 @@ This client provides following functionality
 - Pub/sub
 - Authentication (JWT)
 
+Download [jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
+ 
 Description
 -----------
 Create instance of `Socket` class by passing url of socketcluster-server end-point

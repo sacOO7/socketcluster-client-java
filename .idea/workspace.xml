@@ -7,76 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43888e20-ac73-474d-a23a-a809bcdbf55c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/Main$6.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Ack.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$AckListener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$Listener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$OnceListener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Parser$ParseResult.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Parser.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/ReconnectStrategy.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$10.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$11.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$3.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$4.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$5.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$6.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$7.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$8.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$9$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$9.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$Channel.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Ack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Emitter$AckListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Emitter$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Emitter$OnceListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Emitter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/EventThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/EventThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Parser$ParseResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Parser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/ReconnectStrategy.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$11.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$9$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket$Channel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Socket.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/build/classes/main/BasicListener.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/BasicListener.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/build/classes/main/EventThread$2.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread$2.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Ack.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/BasicListener.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Emitter.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/Emitter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/EventThread.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/EventThread.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/Parser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ReconnectStrategy.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/ReconnectStrategy.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/Socket.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$1.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$2.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$3.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$4.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$5.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main.class" afterPath="$PROJECT_DIR$/build/classes/main/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/SocketclusterClientJava_main_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/SocketclusterClientJava_main_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="SocketclusterClientJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -135,31 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ack.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java">
+      <file leaf-file-name="Socket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Emitter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Emitter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="237">
+              <caret line="488" column="49" selection-start-line="488" selection-start-column="49" selection-end-line="488" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -167,14 +79,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/EventThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="MultiMarkdownFxPreviewEditor">
+            <state />
+          </provider>
+          <provider editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="234">
+                <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -456,12 +372,12 @@
         <option value="$PROJECT_DIR$/src/main/java/BasicListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/ReconnectStrategy.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/Socket.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sacOO7/EventThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sacOO7/Socket.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/EventThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -627,6 +543,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocketclusterClientJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocketclusterClientJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sac" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1168,7 +1110,7 @@
       <workItem from="1479231701992" duration="11833000" />
       <workItem from="1479271690028" duration="12365000" />
       <workItem from="1479534253363" duration="17286000" />
-      <workItem from="1479640882142" duration="809000" />
+      <workItem from="1479640882142" duration="1095000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented pub-sub , event send and receive callbacks">
       <created>1479042410288</created>
@@ -1247,15 +1189,22 @@
       <option name="project" value="LOCAL" />
       <updated>1479641155343</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Created package and respective jar file for dependency management">
+      <created>1479641739783</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1479641739783</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93900000" />
+    <option name="totallyTimeSpent" value="94186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1265,7 +1214,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988048" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3935185" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3935185" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24701196" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1309,7 +1258,8 @@
     <MESSAGE value="Updated readme again" />
     <MESSAGE value="Updated readme for final documentation" />
     <MESSAGE value="Added code for removing channel when unsubscribed the same" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added code for removing channel when unsubscribed the same" />
+    <MESSAGE value="Created package and respective jar file for dependency management" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created package and respective jar file for dependency management" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1346,8 +1296,6 @@
           <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10409#10885#0" expanded="true" />
-            <element signature="e#10884#10885#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1387,8 +1335,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10409#10885#0" expanded="true" />
-            <element signature="e#10884#10885#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1435,8 +1381,6 @@
           <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10409#10885#0" expanded="true" />
-            <element signature="e#10884#10885#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1465,8 +1409,6 @@
           <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10409#10885#0" expanded="true" />
-            <element signature="e#10884#10885#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1495,8 +1437,6 @@
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10409#10885#0" expanded="true" />
-            <element signature="e#10884#10885#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1665,20 +1605,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/artifacts/SocketclusterClientJava_jar/Main.class" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="155">
-            <caret line="64" column="3" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/ReconnectStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -1695,18 +1621,6 @@
         <state relative-caret-position="126">
           <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10409#10885#0" expanded="true" />
-            <element signature="e#10884#10885#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1756,6 +1670,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1774,11 +1696,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="237">
+          <caret line="488" column="49" selection-start-line="488" selection-start-column="49" selection-end-line="488" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="MultiMarkdownFxPreviewEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="234">
+            <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
