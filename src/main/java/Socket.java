@@ -447,7 +447,7 @@ public class Socket extends Emitter{
     }
 
     /**
-     * Channels need to be subscribed everytime when client is reconnected to server (handled inside)
+     * Channels need to be subscribed everytime whenever client is reconnected to server (handled inside)
      * Add only one listener to one channel for whole lifetime of process
      */
 
@@ -485,6 +485,7 @@ public class Socket extends Emitter{
 
         public void unsubscribe(){
             Socket.this.unsubscribe(channelName);
+            channels.remove(getChannelByName(channelName));
         }
     }
 }
