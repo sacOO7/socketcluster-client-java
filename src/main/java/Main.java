@@ -1,6 +1,6 @@
 import com.neovisionaries.ws.client.WebSocketException;
-import com.neovisionaries.ws.client.WebSocketFactory;
 import com.neovisionaries.ws.client.WebSocketFrame;
+import io.github.sac.*;
 
 import java.util.List;
 import java.util.Map;
@@ -38,7 +38,7 @@ public class Main {
 
             public void onAuthentication(Boolean status) {
                 if (status) {
-                    System.out.println("Socket is authenticated");
+                    System.out.println("io.github.sac.Socket is authenticated");
                 } else {
                     System.out.println("Authentication is required (optional)");
                 }
