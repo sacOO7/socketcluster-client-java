@@ -70,6 +70,8 @@ public class Main {
         });
 
 
+
+
         socket.on("chat", new Emitter.Listener() {
             public void call(Object object) {
                 System.out.println("Got echo event :: " + object);
@@ -83,6 +85,8 @@ public class Main {
 
             }
         });
+
+
 
         while (true) {
             Scanner scanner = new Scanner(System.in);

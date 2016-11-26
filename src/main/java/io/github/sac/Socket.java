@@ -500,7 +500,11 @@ public class Socket extends Emitter {
 
         public void unsubscribe(){
             Socket.this.unsubscribe(channelName);
-            channels.remove(getChannelByName(channelName));
+            channels.remove(this);
+        }
+
+        public void unsubscribe(Ack ack){
+            Socket.this.unsubscribe(channelName,ack);
         }
     }
 }

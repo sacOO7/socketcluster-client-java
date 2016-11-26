@@ -219,6 +219,17 @@ Implementing Pub-Sub via channels
 ``` 
  
 <!--###### Pub-sub without creating channel-->
+#### Un-subscribing to channel
+
+```java
+    channel.unsubscribe(new Ack() {
+                public void call(Object error, Object data) {
+                    if (error == null) {
+                        System.out.println("channel unsubscribed successfully");
+                    }
+                }
+        });    
+```
  
 #### Handling SSL connection with server
  
