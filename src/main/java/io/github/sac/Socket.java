@@ -282,9 +282,22 @@ public class Socket extends Emitter {
             public void run() {
                 JSONObject subscribeObject=new JSONObject();
                 subscribeObject.put("event","#unsubscribe");
-                JSONObject object=new JSONObject();
-                object.put("channel",channel);
-                subscribeObject.put("data",object);
+                subscribeObject.put("data",channel);
+                subscribeObject.put("cid",counter.getAndIncrement());
+                ws.sendText(subscribeObject.toJSONString());
+            }
+        });
+        return this;
+    }
+
+    public Socket unsubscribe(final String channel,final Ack ack){
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject subscribeObject=new JSONObject();
+                subscribeObject.put("event","#unsubscribe");
+                subscribeObject.put("data",channel);
+
+                acks.put(counter.longValue(),ack);
                 subscribeObject.put("cid",counter.getAndIncrement());
                 ws.sendText(subscribeObject.toJSONString());
             }
