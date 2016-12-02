@@ -30,7 +30,7 @@ public class Parser {
                 } else if (event.equals("#setAuthToken")) {
                     return ParseResult.SETTOKEN;
                 } else {
-                    System.out.println("Event got called with cid "+cid);
+//                    System.out.println("Event got called with cid "+cid);
                     return ParseResult.EVENT;
                 }
         }else {

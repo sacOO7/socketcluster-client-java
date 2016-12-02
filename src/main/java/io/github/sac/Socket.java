@@ -219,7 +219,7 @@ public class Socket extends Emitter {
                 JSONObject eventObject=new JSONObject();
                 eventObject.put("event",event);
                 eventObject.put("data",object);
-                eventObject.put("cid",counter.getAndIncrement());
+//                eventObject.put("cid",counter.getAndIncrement());
                 ws.sendText(eventObject.toJSONString());
             }
         });
