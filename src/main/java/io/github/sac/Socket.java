@@ -368,7 +368,7 @@ public class Socket extends Emitter {
     public void connect() {
 
         try {
-            ws = factory.createSocket("ws://localhost:8000/socketcluster/");
+            ws = factory.createSocket(URL);
         }catch (IOException e){
             System.out.printf(e.getMessage());
         }
