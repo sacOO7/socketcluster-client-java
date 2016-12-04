@@ -7,12 +7,16 @@ import org.json.simple.parser.JSONParser;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 /**
  * Created by sachin on 13/11/16.
  */
 
 public class Socket extends Emitter {
+
+
+    private final static Logger LOGGER = Logger.getLogger(Socket.class.getName());
 
     private AtomicInteger counter;
     private String URL;
@@ -112,7 +116,8 @@ public class Socket extends Emitter {
                 if (strategy!=null) {
                     reconnect();
                 }else{
-                    System.out.println("cant reconnect , reconnection is null");
+//                    System.out.println("cant reconnect , reconnection is null");
+                    LOGGER.info("cant reconnect , reconnection is null");
                 }
                 super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer);
             }
@@ -123,7 +128,9 @@ public class Socket extends Emitter {
                 if (strategy!=null) {
                     reconnect();
                 }else{
-                    System.out.println("cant reconnect , reconnection is null");
+//                    System.out.println("cant reconnect , reconnection is null");
+                    LOGGER.info("cant reconnect , reconnection is null");
+
                 }
                 super.onConnectError(websocket, exception);
             }
@@ -171,11 +178,14 @@ public class Socket extends Emitter {
                             break;
                         case EVENT:
                             if (hasEventAck(event)) {
-                                System.out.println("This event has ack");
+//                                System.out.println("This event has ack");
+                                LOGGER.info("This event have ack");
                                 handleEmitAck(event,dataobject,ack(cid));
                             }else {
                                 Socket.this.handleEmit(event, dataobject);
-                                System.out.println("This ack doesnt have ack");
+//                                System.out.println("This ack doesnt have ack");
+                                LOGGER.info("This event doesnt have ack");
+
                             }
                             break;
                         case ACKRECEIVE:
@@ -187,7 +197,9 @@ public class Socket extends Emitter {
 //                                    System.out.println("calling fun with ack"+rid);
                                     fn.call(object.get("error"),object.get("data"));
                                 }else{
-                                    System.out.println("ack function is null with rid "+rid);
+//                                    System.out.println("ack function is null with rid "+rid);
+                                    LOGGER.info("ack function is null with rid "+rid);
+
                                 }
                             }
                             break;
@@ -200,13 +212,17 @@ public class Socket extends Emitter {
 
             @Override
             public void onCloseFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                System.out.println("On close frame got called");
+//                System.out.println("On close frame got called");
+                LOGGER.info("On close frame got called");
+
                 super.onCloseFrame(websocket, frame);
             }
 
             @Override
             public void onSendError(WebSocket websocket, WebSocketException cause, WebSocketFrame frame) throws Exception {
-                System.out.println("Got send error");
+//                System.out.println("Got send error");
+                LOGGER.info("Got send error");
+
                 super.onSendError(websocket, cause, frame);
             }
 
@@ -370,7 +386,7 @@ public class Socket extends Emitter {
         try {
             ws = factory.createSocket(URL);
         }catch (IOException e){
-            System.out.printf(e.getMessage());
+            e.printStackTrace();
         }
         ws.addExtension("permessage-deflate; client_max_window_bits");
         ws.addHeader("Accept-Encoding","gzip, deflate, sdch");
@@ -389,14 +405,14 @@ public class Socket extends Emitter {
 
             // Status line.
             StatusLine sl = e.getStatusLine();
-            System.out.println("=== Status Line ===");
-            System.out.format("HTTP Version  = %s\n", sl.getHttpVersion());
-            System.out.format("Status Code   = %d\n", sl.getStatusCode());
-            System.out.format("Reason Phrase = %s\n", sl.getReasonPhrase());
+            LOGGER.info("=== Status Line ===");
+            LOGGER.info("HTTP Version  = \n"+sl.getHttpVersion());
+            LOGGER.info("Status Code   = \n"+ sl.getStatusCode());
+            LOGGER.info("Reason Phrase = \n"+ sl.getReasonPhrase());
 
             // HTTP headers.
             Map<String, List<String>> headers = e.getHeaders();
-            System.out.println("=== HTTP Headers ===");
+            LOGGER.info("=== HTTP Headers ===");
             for (Map.Entry<String, List<String>> entry : headers.entrySet())
             {
                 // Header name.
@@ -408,14 +424,14 @@ public class Socket extends Emitter {
                 if (values == null || values.size() == 0)
                 {
                     // Print the name only.
-                    System.out.println(name);
+                    LOGGER.info(name);
                     continue;
                 }
 
                 for (String value : values)
                 {
                     // Print the name and the value.
-                    System.out.format("%s: %s\n", name, value);
+                    LOGGER.info(name+value+"\n");
                 }
             }
         }
@@ -426,7 +442,7 @@ public class Socket extends Emitter {
             if (strategy!=null) {
                 reconnect();
             }else{
-                System.out.println("cant reconnect , reconnection is null");
+                LOGGER.info("cant reconnect , reconnection is null");
             }
         }
 

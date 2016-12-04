@@ -38,7 +38,7 @@ public class Main {
 
             public void onAuthentication(Boolean status) {
                 if (status) {
-                    System.out.println("io.github.sac.Socket is authenticated");
+                    System.out.println("socket is authenticated");
                 } else {
                     System.out.println("Authentication is required (optional)");
                 }

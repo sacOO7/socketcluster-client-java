@@ -17,7 +17,7 @@ public class EventThread extends Thread {
     private static final ThreadFactory THREAD_FACTORY = new ThreadFactory() {
         public Thread newThread(Runnable runnable) {
             thread = new EventThread(runnable);
-            thread.setName("io.github.sac.EventThread");
+            thread.setName("EventThread");
             return thread;
         }
     };

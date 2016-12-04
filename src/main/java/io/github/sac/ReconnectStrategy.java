@@ -1,11 +1,15 @@
 package io.github.sac;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Created by sachin on 16/11/16.
  */
 
 public class ReconnectStrategy {
 
+    private final static Logger LOGGER = Logger.getLogger(ReconnectStrategy.class.getName());
     /**
      *The number of milliseconds to delay before attempting to reconnect.
      * Default: 2000
@@ -39,6 +43,7 @@ public class ReconnectStrategy {
 
 
     public ReconnectStrategy(){
+        LOGGER.setLevel(Level.INFO);
         reconnectInterval=2000;
         maxReconnectInterval=30000;
         reconnectDecay= (float) 1;
@@ -79,7 +84,8 @@ public class ReconnectStrategy {
 
     public void processValues(){
         attmptsMade++;
-        System.out.println("value of reconnect interval is"+reconnectInterval);
+//        System.out.println();
+        LOGGER.info("value of reconnect interval is"+reconnectInterval);
         if (reconnectInterval<maxReconnectInterval) {
             reconnectInterval = (int) (reconnectInterval * reconnectDecay);
             if (reconnectInterval>maxReconnectInterval){
