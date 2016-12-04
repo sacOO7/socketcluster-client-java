@@ -459,6 +459,7 @@ public class Socket extends Emitter {
 
     public void disconnect(){
         ws.disconnect();
+        strategy=null;
     }
 
     /**
