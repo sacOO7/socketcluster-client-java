@@ -72,7 +72,7 @@ Implemented using `BasicListener` interface
 
 ```java
     //This will set automatic-reconnection to server with delay of 2 seconds and repeating it for 30 times
-    socket.setReconnection(new ReconnectStrategy().setDelay(2).setMaxAttempts(30));
+    socket.setReconnection(new ReconnectStrategy().setDelay(2000).setMaxAttempts(30));
     socket.connect();
 ```
 
