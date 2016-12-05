@@ -54,23 +54,24 @@ public class Main {
 
 
 //
-//        Socket.Channel channel = socket.createChannel("yell");
-//
-//
-//        channel.subscribe(new Ack() {
-//            public void call(Object error, Object data) {
-//                if (error == null) {
-//                    System.out.println("channel sub success");
-//                }
-//            }
-//        });
-//
-//        channel.onMessage(new Emitter.Listener() {
-//            public void call(Object object) {
-//                System.out.println("got message " + object);
-//            }
-//        });
-//
+        Socket.Channel channel = socket.createChannel("yell");
+
+
+        channel.unsubscribe();
+        channel.subscribe(new Ack() {
+            public void call(Object error, Object data) {
+                if (error == null) {
+                    System.out.println("channel sub success");
+                }
+            }
+        });
+
+        channel.onMessage(new Emitter.Listener() {
+            public void call(Object object) {
+                System.out.println("got message " + object);
+            }
+        });
+
 //
 //
 //

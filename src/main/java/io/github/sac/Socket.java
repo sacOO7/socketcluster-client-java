@@ -525,6 +525,7 @@ public class Socket extends Emitter {
 
         public void unsubscribe(Ack ack){
             Socket.this.unsubscribe(channelName,ack);
+            channels.remove(this);
         }
     }
 }
