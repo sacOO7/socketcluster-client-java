@@ -9,6 +9,8 @@ This client provides following functionality
 - Pub/sub
 - Authentication (JWT)
 
+[ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
+
 Download [jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
  
 Description
@@ -72,7 +74,7 @@ Implemented using `BasicListener` interface
 
 ```java
     //This will set automatic-reconnection to server with delay of 2 seconds and repeating it for 30 times
-    socket.setReconnection(new ReconnectStrategy().setDelay(2).setMaxAttempts(30));
+    socket.setReconnection(new ReconnectStrategy().setDelay(2000).setMaxAttempts(30));
     socket.connect();
 ```
 
