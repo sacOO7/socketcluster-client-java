@@ -1,14 +1,76 @@
-group 'io.github.sac'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
+buildscript {
+    repositories {
+        jcenter()
+    }
 }
 
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
+group 'io.github.sac'
+version '1.5'
+
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+}
+
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'io.github.sac'
+            artifactId 'SocketclusterClientJava'
+            version '1.5'
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+        }
+    }
+}
+
+
+bintray{
+    user=System.getenv('BINTRAY_USER')
+    key=System.getenv('BINTRAY_API_KEY')
+//    configurations = ['archives']
+    publications = ['MyPublication']
+    pkg {
+        repo = 'Maven'
+        name = 'socketcluster-client'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/sacOO7/socketcluster-client-java.git'
+        publicDownloadNumbers = true
+
+        version {
+            name = '1.5'
+            desc = 'Added javadoc and sources'
+            vcsTag = '1.5'
+        }
+
+    }
+}
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
