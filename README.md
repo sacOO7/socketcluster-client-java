@@ -9,7 +9,7 @@ This client provides following functionality
 - Pub/sub
 - Authentication (JWT)
 
-[ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg?version=1.1) ](https://bintray.com/sacoo7/Maven/socketcluster-client/1.1/link)
+[ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
 
 Download [jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
  
