@@ -23,6 +23,8 @@ Create instance of `Socket` class by passing url of socketcluster-server end-poi
 ```
 **Note** : Default url to socketcluster end-point is always *ws://somedomainname.com/socketcluster/*.
 
+
+
 #### Registering basic listeners
  
 Implemented using `BasicListener` interface
