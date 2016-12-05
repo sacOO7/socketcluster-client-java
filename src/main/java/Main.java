@@ -46,7 +46,7 @@ public class Main {
 
         });
 
-        socket.setReconnection(new ReconnectStrategy().setMaxAttempts(30)); //Connect after each 2 seconds for 30 times
+        socket.setReconnection(new ReconnectStrategy().setDelay(2).setMaxAttempts(30)); //Connect after each 2 seconds for 30 times
 
         socket.connect();
 
