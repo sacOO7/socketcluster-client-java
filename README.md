@@ -19,9 +19,9 @@ Create instance of `Socket` class by passing url of socketcluster-server end-poi
     //Create a socket instance
     String url="ws://localhost:8000/socketcluster/";
     Socket socket = new Socket(url);
-    
+     
 ```
-
+Note : Default url to socketcluster end-point is always ws://somedomainname.com/socketcluster/ .
 
 #### Registering basic listeners
  
