@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -153,7 +154,7 @@ public class Socket extends Emitter {
                     /**
                      * Message retrieval mechanism goes here
                      */
-//                    System.out.println("new message :"+object.toJSONString());
+                    LOGGER.info("Message :"+object.toJSONString());
 
                     Object dataobject = object.get("data");
                     Long rid = (Long) object.get("rid");
@@ -179,12 +180,12 @@ public class Socket extends Emitter {
                         case EVENT:
                             if (hasEventAck(event)) {
 //                                System.out.println("This event has ack");
-                                LOGGER.info("This event have ack");
+//                                LOGGER.info("This event have ack");
                                 handleEmitAck(event,dataobject,ack(cid));
                             }else {
                                 Socket.this.handleEmit(event, dataobject);
 //                                System.out.println("This ack doesnt have ack");
-                                LOGGER.info("This event doesnt have ack");
+//                                LOGGER.info("This event doesn't have ack");
 
                             }
                             break;
@@ -199,7 +200,6 @@ public class Socket extends Emitter {
                                 }else{
 //                                    System.out.println("ack function is null with rid "+rid);
                                     LOGGER.info("ack function is null with rid "+rid);
-
                                 }
                             }
                             break;
@@ -478,6 +478,9 @@ public class Socket extends Emitter {
         strategy=null;
     }
 
+    public void disableLogging(){
+        LogManager.getLogManager().reset();
+    }
     /**
      * Channels need to be subscribed everytime whenever client is reconnected to server (handled inside)
      * Add only one listener to one channel for whole lifetime of process

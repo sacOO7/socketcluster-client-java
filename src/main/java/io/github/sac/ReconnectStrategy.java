@@ -85,7 +85,7 @@ public class ReconnectStrategy {
     public void processValues(){
         attmptsMade++;
 //        System.out.println();
-        LOGGER.info("value of reconnect interval is"+reconnectInterval);
+        LOGGER.info("Attempt number :" +attmptsMade);
         if (reconnectInterval<maxReconnectInterval) {
             reconnectInterval = (int) (reconnectInterval * reconnectDecay);
             if (reconnectInterval>maxReconnectInterval){
