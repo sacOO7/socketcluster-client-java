@@ -171,6 +171,16 @@ Implementing Pub-Sub via channels
     Socket.Channel channel = socket.createChannel(channelName);
     //Socket.Channel channel = socket.createChannel("yolo"); 
     
+    
+    /**
+     * without acknowledgement
+     */
+     channel.subscribe();
+     
+    /**
+     * with acknowledgement
+     */
+     
     channel.subscribe(new Ack() {
                 public void call(Object error, Object data) {
                     if (error == null) {
@@ -203,7 +213,14 @@ Implementing Pub-Sub via channels
 
 ```java
        // message can have any data type
-       
+    /**
+     * without acknowledgement
+     */
+     channel.publish(message);
+     
+    /**
+     * with acknowledgement
+     */
        channel.publish(message, new Ack() {
                 public void call(Object error, Object data) {
                     if (error == null) {
@@ -230,6 +247,17 @@ Implementing Pub-Sub via channels
 #### Un-subscribing to channel
 
 ```java
+
+    /**
+     * without acknowledgement
+     */
+     
+     channel.unsubscribe();
+     
+    /**
+     * with acknowledgement
+     */
+     
     channel.unsubscribe(new Ack() {
                 public void call(Object error, Object data) {
                     if (error == null) {
