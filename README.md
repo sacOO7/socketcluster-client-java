@@ -72,7 +72,7 @@ Implemented using `BasicListener` interface
 
 ```java
     //This will set automatic-reconnection to server with delay of 2 seconds and repeating it for 30 times
-    socket.setReconnection(new ReconnectStrategy().setMaxAttempts(30));
+    socket.setReconnection(new ReconnectStrategy().setDelay(2).setMaxAttempts(30));
     socket.connect();
 ```
 
@@ -80,6 +80,12 @@ Implemented using `BasicListener` interface
 
 ```
    socket.setReconnection(null); 
+```
+
+- By default logging of messages is enabled ,to disable :
+
+```
+   socket.disableLogging();
 ```
 
 Emitting and listening to events
