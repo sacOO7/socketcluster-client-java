@@ -26,7 +26,7 @@ dependencies {
 
 [ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
 
-Download [jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
+Download [latest jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
  
 Description
 -----------
@@ -48,16 +48,16 @@ Implemented using `BasicListener` interface
 
 ```java
         socket.setListener(new BasicListener() {
-
-            public void onConnected(Map<String, List<String>> headers) {
+        
+            public void onConnected(Socket socket,Map<String, List<String>> headers) {
                 System.out.println("Connected to endpoint");
             }
 
-            public void onDisconnected(WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
+            public void onDisconnected(Socket socket,WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
                 System.out.println("Disconnected from end-point");
             }
 
-            public void onConnectError(WebSocketException exception) {
+            public void onConnectError(Socket socket,WebSocketException exception) {
                 System.out.println("Got connect error "+ exception);
             }
 
@@ -65,9 +65,9 @@ Implemented using `BasicListener` interface
                 socket.setAuthToken(token);
             }
 
-            public void onAuthentication(Boolean status) {
+            public void onAuthentication(Socket socket,Boolean status) {
                 if (status) {
-                    System.out.println("Socket is authenticated");
+                    System.out.println("socket is authenticated");
                 } else {
                     System.out.println("Authentication is required (optional)");
                 }
@@ -121,8 +121,9 @@ Emitting and listening to events
 
 ```java
     socket.emit(eventname, message, new Ack() {
-                public void call(Object error, Object data) {
-                    
+                public void call(String eventName,Object error, Object data) {
+                    //If error and data is String
+                    System.out.println("Got message for :"+eventName+" error is :"+error+" data is :"+data);
                 }
         });
 ```
@@ -135,11 +136,10 @@ The object received can be String , Boolean , Long or JSONObject.
 
 ```java
     socket.on(eventname, new Emitter.Listener() {
-                public void call(Object object) {
+                public void call(String eventName,Object object) {
                     
                     // Cast object to its proper datatype
-                     
-                    System.out.println("Got message :: " + object);
+                    System.out.println("Got message for :"+eventName+" data is :"+data);
                 }
         }); 
 ```
@@ -148,7 +148,7 @@ The object received can be String , Boolean , Long or JSONObject.
 
 ```java
     socket.on(eventname, new Emitter.AckListener() {
-            public void call(Object object, Ack ack) {
+            public void call(String eventName,Object object, Ack ack) {
                 
                 // Cast object to its proper datatype                     
                 System.out.println("Got message :: " + object);
@@ -158,19 +158,19 @@ The object received can be String , Boolean , Long or JSONObject.
                 .../
                 if (error){
                 
-                ack.call(error,null);
+                ack.call(eventName,error,null);
                 
                 }else{
                 
                 //Data can be of any data type
                 
-                ack.call(null,data);
+                ack.call(eventName,null,data);
                 }
                 
                 
                 //Both error and data can be sent to server
                 
-                //ack.call(error,data);
+                ack.call(eventName,error,data);
                 
             }
         });
@@ -199,9 +199,9 @@ Implementing Pub-Sub via channels
      */
      
     channel.subscribe(new Ack() {
-                public void call(Object error, Object data) {
+                public void call(String channelName, Object error, Object data) {
                     if (error == null) {
-                        System.out.println("subscibed to channel successfully");
+                        System.out.println("Subscribed to channel "+channelName+" successfully");
                     }
                 }
         });
@@ -239,9 +239,9 @@ Implementing Pub-Sub via channels
      * with acknowledgement
      */
        channel.publish(message, new Ack() {
-                public void call(Object error, Object data) {
+                public void call(String channelName,Object error, Object data) {
                     if (error == null) {
-                        System.out.println("Publish sent successfully");
+                        System.out.println("Published message to channel "+channelName+" successfully");
                     }
                 }
         });
@@ -254,8 +254,10 @@ Implementing Pub-Sub via channels
 
 ```java
     channel.onMessage(new Emitter.Listener() {
-             public void call(Object object) {
-                 System.out.println("got message " + object);
+             public void call(String channelName , Object object) {
+                
+                 System.out.println("Got message for channel "+channelName+" data is "+data);
+                 
              }
          });
 ``` 
@@ -276,7 +278,7 @@ Implementing Pub-Sub via channels
      */
      
     channel.unsubscribe(new Ack() {
-                public void call(Object error, Object data) {
+                public void call(String channelName, Object error, Object data) {
                     if (error == null) {
                         System.out.println("channel unsubscribed successfully");
                     }
