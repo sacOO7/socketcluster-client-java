@@ -7,9 +7,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43888e20-ac73-474d-a23a-a809bcdbf55c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar" afterPath="$PROJECT_DIR$/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.6-javadoc.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.6-sources.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.6.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava.iml" afterPath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_main.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/Main.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/Main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/allclasses-frame.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/allclasses-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/allclasses-noframe.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/allclasses-noframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/constant-values.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/constant-values.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/deprecated-list.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/deprecated-list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/help-doc.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/help-doc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/index-all.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/index-all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/index.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Ack.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Ack.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/BasicListener.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/BasicListener.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Emitter.AckListener.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Emitter.AckListener.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Emitter.Listener.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Emitter.Listener.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Emitter.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Emitter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/EventThread.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/EventThread.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Parser.ParseResult.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Parser.ParseResult.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Parser.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Parser.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/ReconnectStrategy.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/ReconnectStrategy.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Socket.Channel.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Socket.Channel.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Socket.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/Socket.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/package-frame.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/package-summary.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/package-tree.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/io/github/sac/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-frame.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/overview-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-summary.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/overview-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/overview-tree.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/overview-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/package-frame.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/package-summary.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/package-tree.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/publications/MyPublication/pom-default.xml" afterPath="$PROJECT_DIR$/build/publications/MyPublication/pom-default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/tmp/javadoc/javadoc.options" afterPath="$PROJECT_DIR$/build/tmp/javadoc/javadoc.options" />
     </list>
     <ignored path="SocketclusterClientJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,6 +102,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MultiMarkdownFxPreviewEditor">
@@ -69,8 +119,8 @@
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="307">
-                <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+              <first_editor relative-caret-position="144">
+                <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -288,7 +338,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$/../JFoenix" value="5896919173480" />
-        <entry key="$PROJECT_DIR$" value="2959546422844" />
+        <entry key="$PROJECT_DIR$" value="2959601584291" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -475,12 +525,12 @@
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/ReconnectStrategy.java" />
         <option value="$PROJECT_DIR$/LICENSE" />
         <option value="$PROJECT_DIR$/LICENSE.txt" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Emitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -1165,7 +1215,7 @@
       <workItem from="1480954394305" duration="977000" />
       <workItem from="1480955683288" duration="1306000" />
       <workItem from="1480960335482" duration="1393000" />
-      <workItem from="1481004264167" duration="5688000" />
+      <workItem from="1481004264167" duration="6085000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented pub-sub , event send and receive callbacks">
       <created>1479042410288</created>
@@ -1356,15 +1406,22 @@
       <option name="project" value="LOCAL" />
       <updated>1481010333339</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="updated readme">
+      <created>1481010788873</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1481010788873</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153323000" />
+    <option name="totallyTimeSpent" value="153720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1375,7 +1432,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988048" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37191358" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33641976" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33641976" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2438247" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1420,7 +1477,6 @@
     <MESSAGE value="Updated README" />
     <MESSAGE value="Updated Unsubscribe" />
     <MESSAGE value="Generated latest jar" />
-    <MESSAGE value="updated readme" />
     <MESSAGE value="changed protocol emit configuration" />
     <MESSAGE value="removed hardcoded url" />
     <MESSAGE value="Setting reconnect to null after disconnect" />
@@ -1432,7 +1488,8 @@
     <MESSAGE value="Renamed license" />
     <MESSAGE value="Finally uploaded jar to bintray" />
     <MESSAGE value="Optimized the code and updated user friendly callbacks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized the code and updated user friendly callbacks" />
+    <MESSAGE value="updated readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1802,14 +1859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1877,14 +1926,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MultiMarkdownFxPreviewEditor">
         <state />
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="307">
-            <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+          <first_editor relative-caret-position="144">
+            <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor />

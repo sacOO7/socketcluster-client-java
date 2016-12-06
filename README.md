@@ -20,7 +20,7 @@ Gradle
 
 ```Gradle
 dependencies {
-    compile 'io.github.sac:SocketclusterClientJava:1.5'
+    compile 'io.github.sac:SocketclusterClientJava:1.6'
 }
 ```
 
