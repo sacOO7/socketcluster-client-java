@@ -8,5 +8,5 @@ package io.github.sac; /**
  */
 
 public interface Ack {
-    public void call(Object error,Object data);
+    void call(String name, Object error, Object data);
 }

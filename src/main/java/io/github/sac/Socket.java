@@ -26,7 +26,7 @@ public class Socket extends Emitter {
     private WebSocket ws;
     private BasicListener listener;
     private String AuthToken;
-    private HashMap <Long,Ack> acks;
+    private HashMap <Long,Object[]> acks;
     private List <Channel> channels;
     private WebSocketAdapter adapter;
 
@@ -34,8 +34,8 @@ public class Socket extends Emitter {
         this.URL = URL;
         factory=new WebSocketFactory().setConnectionTimeout(5000);
         counter=new AtomicInteger(1);
-        acks=new HashMap<Long, Ack>();
-        channels=new ArrayList<Channel>();
+        acks= new HashMap<>();
+        channels= new ArrayList<>();
         adapter=getAdapter();
     }
 
@@ -106,14 +106,14 @@ public class Socket extends Emitter {
 
 //                websocket.sendText("{\"event\": \"#handshake\",\"data\": {\"authToken\":\""+AuthToken+"\"},\"cid\": "+ cid++ +"}");
 
-                listener.onConnected(headers);
+                listener.onConnected(Socket.this,headers);
 
                 super.onConnected(websocket, headers);
             }
 
             @Override
             public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) throws Exception {
-                listener.onDisconnected(serverCloseFrame,clientCloseFrame,closedByServer);
+                listener.onDisconnected(Socket.this,serverCloseFrame,clientCloseFrame,closedByServer);
                 if (strategy!=null) {
                     reconnect();
                 }else{
@@ -125,7 +125,7 @@ public class Socket extends Emitter {
 
             @Override
             public void onConnectError(WebSocket websocket, WebSocketException exception) throws Exception {
-                listener.onConnectError(exception);
+                listener.onConnectError(Socket.this,exception);
                 if (strategy!=null) {
                     reconnect();
                 }else{
@@ -165,11 +165,11 @@ public class Socket extends Emitter {
                     switch (Parser.parse(dataobject,rid,cid,event)) {
 
                         case ISAUTHENTICATED:
-                            listener.onAuthentication((Boolean) ((JSONObject)dataobject).get("isAuthenticated"));
+                            listener.onAuthentication(Socket.this,(Boolean) ((JSONObject)dataobject).get("isAuthenticated"));
                             subscribeChannels();
                             break;
                         case PUBLISH:
-                            Socket.this.handleEmit(String.valueOf((((JSONObject)dataobject).get("channel"))), ((JSONObject)dataobject).get("data"));
+                            Socket.this.handlePublish(String.valueOf((((JSONObject)dataobject).get("channel"))), ((JSONObject)dataobject).get("data"));
                             break;
                         case REMOVETOKEN:
                             setAuthToken(null);
@@ -191,15 +191,18 @@ public class Socket extends Emitter {
                             break;
                         case ACKRECEIVE:
 
-                            if (acks.containsKey(rid)){
+                            if (acks.containsKey(rid)) {
 //                                System.out.println("Contains ack with id "+rid);
-                                Ack fn=acks.remove(rid);
-                                if (fn!=null){
+                                Object[] objects = acks.remove(rid);
+                                if (objects != null) {
+                                    Ack fn = (Ack) objects[1];
+                                    if (fn != null) {
 //                                    System.out.println("calling fun with ack"+rid);
-                                    fn.call(object.get("error"),object.get("data"));
-                                }else{
+                                        fn.call((String) objects[0],object.get("error"), object.get("data"));
+                                    } else {
 //                                    System.out.println("ack function is null with rid "+rid);
-                                    LOGGER.info("ack function is null with rid "+rid);
+                                        LOGGER.info("ack function is null with rid " + rid);
+                                    }
                                 }
                             }
                             break;
@@ -248,7 +251,7 @@ public class Socket extends Emitter {
         EventThread.exec(new Runnable() {
             public void run() {
                 JSONObject eventObject=new JSONObject();
-                acks.put(counter.longValue(),ack);
+                acks.put(counter.longValue(),getAckObject(event,ack));
                 eventObject.put("event",event);
                 eventObject.put("data",object);
                 eventObject.put("cid",counter.getAndIncrement());
@@ -275,13 +278,18 @@ public class Socket extends Emitter {
         return this;
     }
 
+    public Object[] getAckObject(String event,Ack ack){
+        Object object[]={event,ack};
+        return object;
+    }
+
     public Socket subscribe(final String channel, final Ack ack){
         EventThread.exec(new Runnable() {
             public void run() {
                 JSONObject subscribeObject=new JSONObject();
                 subscribeObject.put("event","#subscribe");
                 JSONObject object=new JSONObject();
-                acks.put(counter.longValue(),ack);
+                acks.put(counter.longValue(),getAckObject(channel,ack));
 
                 object.put("channel",channel);
                 subscribeObject.put("data",object);
@@ -313,7 +321,7 @@ public class Socket extends Emitter {
                 subscribeObject.put("event","#unsubscribe");
                 subscribeObject.put("data",channel);
 
-                acks.put(counter.longValue(),ack);
+                acks.put(counter.longValue(),getAckObject(channel,ack));
                 subscribeObject.put("cid",counter.getAndIncrement());
                 ws.sendText(subscribeObject.toJSONString());
             }
@@ -345,7 +353,7 @@ public class Socket extends Emitter {
                 JSONObject publishObject=new JSONObject();
                 publishObject.put("event","#publish");
                 JSONObject object=new JSONObject();
-                acks.put(counter.longValue(),ack);
+                acks.put(counter.longValue(),getAckObject(channel,ack));
                 object.put("channel",channel);
                 object.put("data",data);
                 publishObject.put("data",object);
@@ -360,7 +368,7 @@ public class Socket extends Emitter {
 
     public Ack ack(final Long cid){
         return new Ack() {
-            public void call(final Object error, final Object data) {
+            public void call(final String channel,final Object error, final Object data) {
                 EventThread.exec(new Runnable() {
                     public void run() {
                         JSONObject object=new JSONObject();
@@ -438,7 +446,7 @@ public class Socket extends Emitter {
         catch (WebSocketException e)
         {
             // Failed to establish a WebSocket connection.
-            listener.onConnectError(e);
+            listener.onConnectError(Socket.this,e);
             if (strategy!=null) {
                 reconnect();
             }else{
@@ -507,7 +515,7 @@ public class Socket extends Emitter {
         }
 
         public void onMessage(Listener listener){
-            Socket.this.on(channelName,listener);
+            Socket.this.onSubscribe(channelName,listener);
         }
 
         public void publish(Object data){
