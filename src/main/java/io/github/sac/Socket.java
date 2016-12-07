@@ -246,6 +246,7 @@ public class Socket extends Emitter {
         return this;
     }
 
+
     public Socket emit(final String event, final Object object, final Ack ack){
 
         EventThread.exec(new Runnable() {
@@ -471,19 +472,43 @@ public class Socket extends Emitter {
 //        }
 
         if (!strategy.areAttemptsComplete()) {
-            new Timer().schedule(new TimerTask() {
+
+            final Timer timer=new Timer();
+            timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     strategy.processValues();
                     Socket.this.connect();
+                    timer.cancel();
+                    timer.purge();
                 }
             },strategy.getReconnectInterval());
+
         }
+
     }
 
     public void disconnect(){
         ws.disconnect();
         strategy=null;
+    }
+
+    /**
+     * States can be
+     * CLOSED
+     * CLOSING
+     * CONNECTING
+     * CREATED
+     * OPEN
+     * @return
+     */
+
+    public WebSocketState getCurrentState(){
+        return ws.getState();
+    }
+
+    public Boolean isconnected(){
+        return ws.getState()==WebSocketState.OPEN;
     }
 
     public void disableLogging(){

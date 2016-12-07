@@ -7,18 +7,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43888e20-ac73-474d-a23a-a809bcdbf55c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.6-javadoc.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.6-sources.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.6.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.7-javadoc.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.7-sources.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/libs/SocketclusterClientJava-1.7.jar" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Main$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Main$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Main$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/Main$6.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.2.1/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$1.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main$2.class" afterPath="$PROJECT_DIR$/build/classes/main/Main$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/Main.class" afterPath="$PROJECT_DIR$/build/classes/main/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Ack.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Ack.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/BasicListener.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/BasicListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$AckListener.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$AckListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$Listener.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter$Listener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Emitter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread$1.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread$2.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/EventThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Parser$ParseResult.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Parser$ParseResult.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Parser.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Parser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/ReconnectStrategy.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/ReconnectStrategy.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$1.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$10$1.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$10$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$10.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$11.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$12.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$2.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$3.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$4.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$5.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$6.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$7.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$8.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$9.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$Channel.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket$Channel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket.class" afterPath="$PROJECT_DIR$/build/classes/main/io/github/sac/Socket.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar" afterPath="$PROJECT_DIR$/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava.iml" afterPath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_main.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/SocketclusterClientJava_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/Main.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/Main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/allclasses-frame.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/allclasses-frame.html" />
@@ -50,6 +84,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/docs/javadoc/package-tree.html" afterPath="$PROJECT_DIR$/build/docs/javadoc/package-tree.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/publications/MyPublication/pom-default.xml" afterPath="$PROJECT_DIR$/build/publications/MyPublication/pom-default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/tmp/javadoc/javadoc.options" afterPath="$PROJECT_DIR$/build/tmp/javadoc/javadoc.options" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java" afterPath="$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java" />
     </list>
     <ignored path="SocketclusterClientJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,39 +127,46 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+            <state relative-caret-position="53">
+              <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1074#1075#0" expanded="true" />
-                <element signature="e#1132#1133#0" expanded="true" />
+                <element signature="e#1624#1752#0" expanded="true" />
+                <element signature="e#1751#1752#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="Socket.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider editor-type-id="MultiMarkdownFxPreviewEditor">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="144">
-                <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-                <folding />
-              </first_editor>
-              <second_editor />
+            <state relative-caret-position="303">
+              <caret line="560" column="34" selection-start-line="560" selection-start-column="34" selection-end-line="560" selection-end-column="34" />
+              <folding>
+                <element signature="e#1655#1656#0" expanded="true" />
+                <element signature="e#1695#1696#0" expanded="true" />
+                <element signature="e#8765#9115#0" expanded="true" />
+                <element signature="e#9114#9115#0" expanded="true" />
+                <element signature="e#9355#9774#0" expanded="true" />
+                <element signature="e#9773#9774#0" expanded="true" />
+                <element signature="e#14085#14610#0" expanded="true" />
+                <element signature="e#14609#14610#0" expanded="true" />
+                <element signature="e#17606#17877#0" expanded="true" />
+                <element signature="e#17876#17877#0" expanded="true" />
+                <element signature="e#18186#18187#0" expanded="true" />
+                <element signature="e#18222#18223#0" expanded="true" />
+                <element signature="e#18257#18258#0" expanded="true" />
+                <element signature="e#18314#18315#0" expanded="true" />
+                <element signature="e#18349#18350#0" expanded="true" />
+                <element signature="e#18399#18400#0" expanded="true" />
+                <element signature="e#18693#18694#0" expanded="true" />
+                <element signature="e#18735#18736#0" expanded="true" />
+                <element signature="e#18869#18870#0" expanded="true" />
+                <element signature="e#18927#18928#0" expanded="true" />
+                <element signature="e#18968#18969#0" expanded="true" />
+                <element signature="e#19030#19031#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -338,7 +381,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$/../JFoenix" value="5896919173480" />
-        <entry key="$PROJECT_DIR$" value="2959601584291" />
+        <entry key="$PROJECT_DIR$" value="2959721485265" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -527,11 +570,11 @@
         <option value="$PROJECT_DIR$/LICENSE.txt" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Emitter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
       </list>
     </option>
   </component>
@@ -553,9 +596,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -582,9 +625,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -658,32 +701,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketclusterClientJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SocketclusterClientJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sac" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1215,7 +1232,12 @@
       <workItem from="1480954394305" duration="977000" />
       <workItem from="1480955683288" duration="1306000" />
       <workItem from="1480960335482" duration="1393000" />
-      <workItem from="1481004264167" duration="6085000" />
+      <workItem from="1481004264167" duration="6198000" />
+      <workItem from="1481011507271" duration="73000" />
+      <workItem from="1481130302101" duration="923000" />
+      <workItem from="1481132207386" duration="33000" />
+      <workItem from="1481133916957" duration="216000" />
+      <workItem from="1481134782838" duration="3454000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented pub-sub , event send and receive callbacks">
       <created>1479042410288</created>
@@ -1413,14 +1435,21 @@
       <option name="project" value="LOCAL" />
       <updated>1481010788873</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="updated readme">
+      <created>1481011183753</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1481011183753</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153720000" />
+    <option name="totallyTimeSpent" value="158532000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1429,10 +1458,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988048" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37191358" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33641976" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31944445" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2438247" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1504,24 +1533,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1539,8 +1556,8 @@
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1551,8 +1568,8 @@
           <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1570,8 +1587,8 @@
           <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1596,8 +1613,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1608,27 +1625,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1646,8 +1644,27 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1679,8 +1696,8 @@
           <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1698,8 +1715,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1717,8 +1734,8 @@
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1755,13 +1772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.neovisionaries/nv-websocket-client/1.30/5be805b93041f248c7f00d2de6db267b25348bc8/nv-websocket-client-1.30-sources.jar!/com/neovisionaries/ws/client/WebSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="950" column="32" selection-start-line="950" selection-start-column="32" selection-end-line="950" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1816,27 +1826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/EventThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/ReconnectStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/docs/javadoc/allclasses-frame.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1855,82 +1844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Emitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1801#1802#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1281#1282#0" expanded="true" />
-            <element signature="e#1312#1313#0" expanded="true" />
-            <element signature="e#1976#1977#0" expanded="true" />
-            <element signature="e#2006#2007#0" expanded="true" />
-            <element signature="e#17936#17937#0" expanded="true" />
-            <element signature="e#17986#17987#0" expanded="true" />
-            <element signature="e#18456#18457#0" expanded="true" />
-            <element signature="e#18514#18515#0" expanded="true" />
-            <element signature="e#18555#18556#0" expanded="true" />
-            <element signature="e#18617#18618#0" expanded="true" />
-            <element signature="e#18668#18669#0" expanded="true" />
-            <element signature="e#18737#18738#0" expanded="true" />
-            <element signature="e#18780#18781#0" expanded="true" />
-            <element signature="e#18841#18842#0" expanded="true" />
-            <element signature="e#18892#18893#0" expanded="true" />
-            <element signature="e#18957#18958#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1940,11 +1853,121 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="144">
-            <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-            <folding />
+          <first_editor relative-caret-position="180">
+            <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/ReconnectStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/EventThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Emitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1202">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/BasicListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Ack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="427" column="16" selection-start-line="427" selection-start-column="16" selection-end-line="427" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.neovisionaries/nv-websocket-client/1.30/5be805b93041f248c7f00d2de6db267b25348bc8/nv-websocket-client-1.30-sources.jar!/com/neovisionaries/ws/client/WebSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="2647" column="5" selection-start-line="2647" selection-start-column="5" selection-end-line="2647" selection-end-column="5" />
+          <folding>
+            <element signature="e#89788#89789#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1624#1752#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/sac/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="560" column="34" selection-start-line="560" selection-start-column="34" selection-end-line="560" selection-end-column="34" />
+          <folding>
+            <element signature="e#1655#1656#0" expanded="true" />
+            <element signature="e#1695#1696#0" expanded="true" />
+            <element signature="e#8765#9115#0" expanded="true" />
+            <element signature="e#9114#9115#0" expanded="true" />
+            <element signature="e#9355#9774#0" expanded="true" />
+            <element signature="e#9773#9774#0" expanded="true" />
+            <element signature="e#14085#14610#0" expanded="true" />
+            <element signature="e#14609#14610#0" expanded="true" />
+            <element signature="e#17606#17877#0" expanded="true" />
+            <element signature="e#17876#17877#0" expanded="true" />
+            <element signature="e#18186#18187#0" expanded="true" />
+            <element signature="e#18222#18223#0" expanded="true" />
+            <element signature="e#18257#18258#0" expanded="true" />
+            <element signature="e#18314#18315#0" expanded="true" />
+            <element signature="e#18349#18350#0" expanded="true" />
+            <element signature="e#18399#18400#0" expanded="true" />
+            <element signature="e#18693#18694#0" expanded="true" />
+            <element signature="e#18735#18736#0" expanded="true" />
+            <element signature="e#18869#18870#0" expanded="true" />
+            <element signature="e#18927#18928#0" expanded="true" />
+            <element signature="e#18968#18969#0" expanded="true" />
+            <element signature="e#19030#19031#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

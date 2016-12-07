@@ -8,8 +8,15 @@ plugins {
     id "com.jfrog.bintray" version "1.7"
 }
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = '1.7'
+        targetCompatibility = '1.7'
+    }
+}
+
 group 'io.github.sac'
-version '1.6'
+version '1.7'
 
 
 allprojects {
@@ -37,7 +44,7 @@ publishing {
             from components.java
             groupId 'io.github.sac'
             artifactId 'SocketclusterClientJava'
-            version '1.6'
+            version '1.7'
 
             artifact sourceJar {
                 classifier "sources"
@@ -64,9 +71,9 @@ bintray{
         publicDownloadNumbers = true
 
         version {
-            name = '1.6'
-            desc = 'Optimized code and updated user friendly callbacks'
-            vcsTag = '1.6'
+            name = '1.7'
+            desc = 'Compiled code for target compatibility of 1.6'
+            vcsTag = '1.7'
         }
 
     }
