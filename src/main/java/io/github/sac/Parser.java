@@ -1,6 +1,8 @@
 package io.github.sac;
 
-import org.json.simple.JSONObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by sachin on 15/11/16.
@@ -17,10 +19,10 @@ public class Parser {
     }
 
 
-    public static ParseResult parse(Object dataobject, Long rid, Long cid, String event) {
+    public static ParseResult parse(Object dataobject, String event) throws JSONException {
 
 //        System.out.println("rid is"+rid);
-        if (dataobject instanceof JSONObject && ((JSONObject) dataobject).get("isAuthenticated") != null) {
+        if (dataobject instanceof JSONObject && ((JSONObject) dataobject).opt("isAuthenticated") != null) {
                 return ParseResult.ISAUTHENTICATED;
         } else if (event != null){
                 if (event.equals("#publish")) {

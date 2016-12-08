@@ -16,7 +16,7 @@ allprojects {
 }
 
 group 'io.github.sac'
-version '1.7'
+version '1.7.1'
 
 
 allprojects {
@@ -44,7 +44,7 @@ publishing {
             from components.java
             groupId 'io.github.sac'
             artifactId 'SocketclusterClientJava'
-            version '1.7'
+            version '1.7.1'
 
             artifact sourceJar {
                 classifier "sources"
@@ -71,16 +71,15 @@ bintray{
         publicDownloadNumbers = true
 
         version {
-            name = '1.7'
-            desc = 'Compiled code for target compatibility of 1.6'
-            vcsTag = '1.7'
+            name = '1.7.1'
+            desc = 'Removed simple.Json and added org.Json , added some more methods'
+            vcsTag = '1.7.1'
         }
 
     }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'com.neovisionaries:nv-websocket-client:1.30'
-    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+    compile group: 'org.json', name: 'json', version: '20090211'
 }
