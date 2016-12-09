@@ -18,11 +18,23 @@ Apache License, Version 2.0
 Gradle
 ------
 
+For java 
+
 ```Gradle
 dependencies {
     compile 'io.github.sac:SocketclusterClientJava:1.7.1'
 }
 ```
+
+For android 
+
+```Gradle
+compile ('io.github.sac:SocketclusterClientJava:1.7.1'){
+        exclude group :'org.json', module: 'json'
+}
+```
+for sample android demo visit [Android Demo](https://github.com/sacOO7/socketcluster-android-demo)
+
 
 [ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
 
