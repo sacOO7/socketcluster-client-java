@@ -1,5 +1,6 @@
 Java and Android Socketcluster Client
 =====================================
+
 Overview
 --------
 This client provides following functionality
@@ -11,13 +12,10 @@ This client provides following functionality
 
 License
 -------
-
 Apache License, Version 2.0
-
 
 Gradle
 ------
-
 For java 
 
 ```Gradle
@@ -25,7 +23,6 @@ dependencies {
     compile 'io.github.sac:SocketclusterClientJava:1.7.1'
 }
 ```
-
 For android 
 
 ```Gradle
@@ -51,7 +48,6 @@ Create instance of `Socket` class by passing url of socketcluster-server end-poi
      
 ```
 **Important Note** : Default url to socketcluster end-point is always *ws://somedomainname.com/socketcluster/*.
-
 
 
 #### Registering basic listeners
@@ -164,7 +160,6 @@ The object received can be String , Boolean , Long or JSONObject.
                 
                 // Cast object to its proper datatype                     
                 System.out.println("Got message :: " + object);
-                
                 /...
                     Some logic goes here
                 .../
@@ -179,11 +174,9 @@ The object received can be String , Boolean , Long or JSONObject.
                 ack.call(eventName,null,data);
                 }
                 
-                
                 //Both error and data can be sent to server
                 
                 ack.call(eventName,error,data);
-                
             }
         });
         
