@@ -35,8 +35,10 @@ for sample android demo visit [Android Demo](https://github.com/sacOO7/socketclu
 
 [ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
 
+<!---
 Download [latest jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
- 
+-->
+
 Description
 -----------
 Create instance of `Socket` class by passing url of socketcluster-server end-point
