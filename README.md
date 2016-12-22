@@ -23,6 +23,8 @@ dependencies {
     compile 'io.github.sac:SocketclusterClientJava:1.7.1'
 }
 ```
+for sample java examples visit [Java Demo](https://github.com/sacOO7/socketcluster-client-testing/tree/master/src/main/java)
+
 For android 
 
 ```Gradle
