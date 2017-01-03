@@ -1,5 +1,6 @@
 Java and Android Socketcluster Client
 =====================================
+
 Overview
 --------
 This client provides following functionality
@@ -11,23 +12,35 @@ This client provides following functionality
 
 License
 -------
-
 Apache License, Version 2.0
-
 
 Gradle
 ------
+For java 
 
 ```Gradle
 dependencies {
     compile 'io.github.sac:SocketclusterClientJava:1.7.1'
 }
 ```
+for sample java examples visit [Java Demo](https://github.com/sacOO7/socketcluster-client-testing/tree/master/src/main/java)
+
+For android 
+
+```Gradle
+compile ('io.github.sac:SocketclusterClientJava:1.7.1'){
+        exclude group :'org.json', module: 'json'
+}
+```
+for sample android demo visit [Android Demo](https://github.com/sacOO7/socketcluster-android-demo)
+
 
 [ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
 
+<!---
 Download [latest jar dependency](https://github.com/sacOO7/socketcluster-client-java/blob/master/out/artifacts/SocketclusterClientJava_main_jar/SocketclusterClientJava_main.jar?raw=true)
- 
+-->
+
 Description
 -----------
 Create instance of `Socket` class by passing url of socketcluster-server end-point
@@ -39,7 +52,6 @@ Create instance of `Socket` class by passing url of socketcluster-server end-poi
      
 ```
 **Important Note** : Default url to socketcluster end-point is always *ws://somedomainname.com/socketcluster/*.
-
 
 
 #### Registering basic listeners
@@ -152,7 +164,6 @@ The object received can be String , Boolean , Long or JSONObject.
                 
                 // Cast object to its proper datatype                     
                 System.out.println("Got message :: " + object);
-                
                 /...
                     Some logic goes here
                 .../
@@ -167,11 +178,9 @@ The object received can be String , Boolean , Long or JSONObject.
                 ack.call(eventName,null,data);
                 }
                 
-                
                 //Both error and data can be sent to server
                 
                 ack.call(eventName,error,data);
-                
             }
         });
         
