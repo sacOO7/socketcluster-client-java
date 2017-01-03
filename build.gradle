@@ -16,7 +16,7 @@ allprojects {
 }
 
 group 'io.github.sac'
-version '1.7.1'
+version '1.7.2'
 
 
 allprojects {
@@ -44,7 +44,7 @@ publishing {
             from components.java
             groupId 'io.github.sac'
             artifactId 'SocketclusterClientJava'
-            version '1.7.1'
+            version '1.7.2'
 
             artifact sourceJar {
                 classifier "sources"
@@ -71,9 +71,9 @@ bintray{
         publicDownloadNumbers = true
 
         version {
-            name = '1.7.1'
-            desc = 'Removed simple.Json and added org.Json , added some more methods'
-            vcsTag = '1.7.1'
+            name = '1.7.2'
+            desc = 'Made unusable methods private and added methods for removing callbacks'
+            vcsTag = '1.7.2'
         }
 
     }
