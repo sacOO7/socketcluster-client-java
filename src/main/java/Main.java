@@ -46,16 +46,16 @@ public class Main {
 
         });
 
-//        socket.setReconnection(new ReconnectStrategy().setDelay(3000).setMaxAttempts(10)); //Connect after each 2 seconds for 30 times
+        socket.setReconnection(new ReconnectStrategy().setDelay(3000).setMaxAttempts(10)); //Connect after each 2 seconds for 30 times
 
 
                 socket.connect();
 
 
-//        socket.disableLogging();
+        socket.disableLogging();
 
 
-//                socket.emit("chat","Hi");
+                socket.emit("chat","Hi");
         socket.emit("chat", "Hi", new Ack() {
             @Override
             public void call(String eventName, Object error, Object data) {
@@ -63,12 +63,12 @@ public class Main {
             }
         });
 
-//        socket.on("yell", new Emitter.Listener() {
-//            @Override
-//            public void call(String eventName, Object data) {
-//                System.out.println("Got message for :"+eventName+" data is :"+data);
-//            }
-//        });
+        socket.on("yell", new Emitter.Listener() {
+            @Override
+            public void call(String eventName, Object data) {
+                System.out.println("Got message for :"+eventName+" data is :"+data);
+            }
+        });
 
         socket.on("yell", new Emitter.AckListener() {
             @Override
@@ -109,21 +109,21 @@ public class Main {
             }
         });
 
-//        channel.unsubscribe(new Ack() {
-//            @Override
-//            public void call(String name, Object error, Object data) {
-//                System.out.println("Unsubscribed successfully");
-//            }
-//        });
-//        channel.unsubscribe();
+        channel.unsubscribe(new Ack() {
+            @Override
+            public void call(String name, Object error, Object data) {
+                System.out.println("Unsubscribed successfully");
+            }
+        });
+        channel.unsubscribe();
+
 //        channel.subscribe(new Ack() {
-//            public void call(Object error, Object data) {
-//                if (error == null) {
-//                    System.out.println("channel sub success");
-//                }
-//            }
-//        });
+//                              @Override
+//                              public void call(String name, Object error, Object data) {
 //
+//                              }
+//          });
+////
 //        channel.onMessage(new Emitter.Listener() {
 //            public void call(Object object) {
 //                System.out.println("got message " + object);

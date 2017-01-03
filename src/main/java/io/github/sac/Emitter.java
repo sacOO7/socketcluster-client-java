@@ -4,6 +4,7 @@ package io.github.sac;
  * Created by sachin on 13/11/16.
  */
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Emitter {
@@ -21,7 +22,7 @@ public class Emitter {
      */
     public Emitter on(String event, Listener fn) {
 
-        if (singlecallbacks.get(event)!=null){
+        if (singlecallbacks.containsKey(event)){
             singlecallbacks.remove(event);
         }
             singlecallbacks.put(event, fn);
@@ -30,7 +31,7 @@ public class Emitter {
 
     public Emitter onSubscribe(String event,Listener fn){
 
-        if (publishcallbacks.get(event)!=null){
+        if (publishcallbacks.containsKey(event)){
             publishcallbacks.remove(event);
         }
         publishcallbacks.put(event, fn);
@@ -38,7 +39,7 @@ public class Emitter {
     }
 
     public Emitter on(String event, AckListener fn) {
-        if (singleackcallbacks.get(event)!=null){
+        if (singleackcallbacks.containsKey(event)){
             singleackcallbacks.remove(event);
         }
         singleackcallbacks.put(event, fn);
@@ -87,6 +88,31 @@ public class Emitter {
 
     public interface AckListener {
         void call (String name,Object data,Ack ack);
+    }
+
+    /**
+     * New methods ADDED
+     */
+
+    public void removeEmitCallback(String event){
+        singlecallbacks.remove(event);
+        singleackcallbacks.remove(event);
+    }
+
+    public void removeSubscribeCallback(String event){
+        publishcallbacks.remove(event);
+    }
+
+    public void removeAllCallbacks(){
+        for (Map.Entry e :singlecallbacks.entrySet()){
+            singlecallbacks.remove(e.getKey().toString());
+        }
+        for (Map.Entry e :singleackcallbacks.entrySet()){
+            singleackcallbacks.remove(e.getKey().toString());
+        }
+        for (Map.Entry e :publishcallbacks.entrySet()){
+            publishcallbacks.remove(e.getKey().toString());
+        }
     }
 
 }

@@ -273,7 +273,7 @@ public class Socket extends Emitter {
         return this;
     }
 
-    public Socket subscribe(final String channel){
+    private Socket subscribe(final String channel){
         EventThread.exec(new Runnable() {
             public void run() {
                 JSONObject subscribeObject=new JSONObject();
@@ -294,12 +294,12 @@ public class Socket extends Emitter {
         return this;
     }
 
-    public Object[] getAckObject(String event,Ack ack){
+    private Object[] getAckObject(String event,Ack ack){
         Object object[]={event,ack};
         return object;
     }
 
-    public Socket subscribe(final String channel, final Ack ack){
+    private Socket subscribe(final String channel, final Ack ack){
         EventThread.exec(new Runnable() {
             public void run() {
                 JSONObject subscribeObject=new JSONObject();
@@ -320,7 +320,7 @@ public class Socket extends Emitter {
         return this;
     }
 
-    public Socket unsubscribe(final String channel){
+    private Socket unsubscribe(final String channel){
         EventThread.exec(new Runnable() {
             public void run() {
                 JSONObject subscribeObject=new JSONObject();
@@ -337,7 +337,7 @@ public class Socket extends Emitter {
         return this;
     }
 
-    public Socket unsubscribe(final String channel,final Ack ack){
+    private Socket unsubscribe(final String channel,final Ack ack){
         EventThread.exec(new Runnable() {
             public void run() {
                 JSONObject subscribeObject=new JSONObject();
@@ -401,7 +401,7 @@ public class Socket extends Emitter {
         return this;
     }
 
-    public Ack ack(final Long cid){
+    private Ack ack(final Long cid){
         return new Ack() {
             public void call(final String channel,final Object error, final Object data) {
                 EventThread.exec(new Runnable() {
@@ -496,7 +496,7 @@ public class Socket extends Emitter {
     }
 
 
-    public void reconnect(){
+    private void reconnect(){
 
         if (!strategy.areAttemptsComplete()) {
 
