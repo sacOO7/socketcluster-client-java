@@ -121,7 +121,7 @@ Emitting and listening to events
 --------------------------------
 #### Event emitter
 
-- eventname is name of event and message can be String ,boolean ,Long or JSON-object
+- eventname is name of event and message can be String, boolean, Long or JSON-object
 
 ```java
     socket.emit(eventname,message);
@@ -144,7 +144,7 @@ Emitting and listening to events
 
 - For listening to events :
 
-The object received can be String , Boolean , Long or JSONObject.
+The object received can be String, Boolean, Long or JSONObject.
 
 ```java
     socket.on(eventname, new Emitter.Listener() {
