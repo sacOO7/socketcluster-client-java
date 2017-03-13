@@ -359,4 +359,5 @@ Basic Authentication.
 // Set credentials for authentication at a proxy server.
 settings.setCredentials(id, password);
 ``` 
+#### Star the repo. if you love the client :).
  
