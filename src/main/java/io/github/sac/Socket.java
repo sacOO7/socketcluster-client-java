@@ -504,10 +504,14 @@ public class Socket extends Emitter {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    strategy.processValues();
-                    Socket.this.connect();
-                    timer.cancel();
-                    timer.purge();
+					if(strategy != null) {
+						strategy.processValues();
+						Socket.this.connect();
+						timer.cancel();
+						timer.purge();
+					} else {
+						LOGGER.info("Strategy is null. Reconnection stopped");
+					}
                 }
             },strategy.getReconnectInterval());
 
