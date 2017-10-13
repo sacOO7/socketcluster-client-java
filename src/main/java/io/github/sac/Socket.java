@@ -449,7 +449,8 @@ public class Socket extends Emitter {
         if (customHeaders != null) {
             Iterator<Map.Entry<String, String>> iterator = customHeaders.entrySet().iterator();
             while (iterator.hasNext()) {
-                ws.addHeader(iterator.next().getKey(), iterator.next().getValue());
+                Map.Entry<String, String> entry = iterator.next();
+                ws.addHeader(entry.getKey(), entry.getValue());
             }
         }
 
