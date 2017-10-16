@@ -29,6 +29,7 @@ public class Socket extends Emitter {
     private HashMap<Long, Object[]> acks;
     private List<Channel> channels;
     private WebSocketAdapter adapter;
+    private HashMap<String, String> customHeaders;
 
     public Socket(String URL) {
         this.URL = URL;
@@ -431,7 +432,7 @@ public class Socket extends Emitter {
     }
 
     public void connect() {
-        connect(null);
+        connect(customHeaders);
     }
 
     public void connect(HashMap<String, String> customHeaders) {
@@ -447,6 +448,7 @@ public class Socket extends Emitter {
         ws.addHeader("Pragma", "no-cache");
         ws.addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
         if (customHeaders != null) {
+            this.customHeaders = customHeaders;
             Iterator<Map.Entry<String, String>> iterator = customHeaders.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, String> entry = iterator.next();
