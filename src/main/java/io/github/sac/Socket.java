@@ -29,6 +29,7 @@ public class Socket extends Emitter {
     private HashMap <Long,Object[]> acks;
     private List <Channel> channels;
     private WebSocketAdapter adapter;
+    private Map<String, String> headers;
 
     public Socket(String URL) {
         this.URL = URL;
@@ -37,6 +38,15 @@ public class Socket extends Emitter {
         acks= new HashMap<>();
         channels= new ArrayList<>();
         adapter=getAdapter();
+        headers = new HashMap<>();
+        putDefaultHeaders();
+    }
+
+    private void putDefaultHeaders() {
+        headers.put("Accept-Encoding","gzip, deflate, sdch");
+        headers.put("Accept-Language","en-US,en;q=0.8");
+        headers.put("Pragma","no-cache");
+        headers.put("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
     }
 
     public Channel createChannel(String name){
@@ -428,6 +438,18 @@ public class Socket extends Emitter {
         }
     }
 
+    public void setExtraHeaders(Map<String, String> extraHeaders, boolean overrideDefaultHeaders) {
+        if (overrideDefaultHeaders) {
+            headers.clear();
+        }
+
+        headers.putAll(extraHeaders);
+    }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
     public void connect() {
 
         try {
@@ -436,10 +458,9 @@ public class Socket extends Emitter {
             e.printStackTrace();
         }
         ws.addExtension("permessage-deflate; client_max_window_bits");
-        ws.addHeader("Accept-Encoding","gzip, deflate, sdch");
-        ws.addHeader("Accept-Language","en-US,en;q=0.8");
-        ws.addHeader("Pragma","no-cache");
-        ws.addHeader("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            ws.addHeader(entry.getKey(), entry.getValue());
+        }
 
         ws.addListener(adapter);
 
