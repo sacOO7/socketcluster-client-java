@@ -20,7 +20,7 @@ For java
 
 ```Gradle
 dependencies {
-    compile 'io.github.sac:SocketclusterClientJava:1.7.3'
+    compile 'io.github.sac:SocketclusterClientJava:1.7.4'
 }
 ```
 for sample java examples visit [Java Demo](https://github.com/sacOO7/socketcluster-client-testing/tree/master/src/main/java)
@@ -28,7 +28,7 @@ for sample java examples visit [Java Demo](https://github.com/sacOO7/socketclust
 For android 
 
 ```Gradle
-compile ('io.github.sac:SocketclusterClientJava:1.7.3'){
+compile ('io.github.sac:SocketclusterClientJava:1.7.4'){
         exclude group :'org.json', module: 'json'
 }
 ```
@@ -96,6 +96,14 @@ Implemented using `BasicListener` interface
     //This will send websocket handshake request to socketcluster-server
     socket.connect();
 ```
+
+- For connecting asynchronously to server:
+
+```java
+    //This will send websocket handshake request to socketcluster-server
+    socket.connectAsync();
+```
+
 
 - By default reconnection to server is not enabled , to enable it :
 

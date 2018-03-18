@@ -16,7 +16,7 @@ allprojects {
 }
 
 group 'io.github.sac'
-version '1.7.3'
+version '1.7.4'
 
 
 allprojects {
@@ -44,7 +44,7 @@ publishing {
             from components.java
             groupId 'io.github.sac'
             artifactId 'SocketclusterClientJava'
-            version '1.7.3'
+            version '1.7.4'
 
             artifact sourceJar {
                 classifier "sources"
@@ -71,9 +71,9 @@ bintray{
         publicDownloadNumbers = true
 
         version {
-            name = '1.7.3'
-            desc = 'Automatically set authToken as soon as received'
-            vcsTag = '1.7.3'
+            name = '1.7.4'
+            desc = 'Added method to Connect asynchronously with server'
+            vcsTag = '1.7.4'
         }
 
     }
