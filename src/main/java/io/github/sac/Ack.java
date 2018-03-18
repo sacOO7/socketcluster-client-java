@@ -3,8 +3,7 @@ package io.github.sac; /**
  */
 
 /**
- *  Interface for handling errors
- *
+ * Interface for handling errors
  */
 
 public interface Ack {

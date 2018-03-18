@@ -9,7 +9,7 @@ import org.json.JSONObject;
  */
 public class Parser {
 
-    public enum ParseResult{
+    public enum ParseResult {
         ISAUTHENTICATED,
         PUBLISH,
         REMOVETOKEN,
@@ -21,21 +21,19 @@ public class Parser {
 
     public static ParseResult parse(Object dataobject, String event) throws JSONException {
 
-//        System.out.println("rid is"+rid);
         if (dataobject instanceof JSONObject && ((JSONObject) dataobject).opt("isAuthenticated") != null) {
-                return ParseResult.ISAUTHENTICATED;
-        } else if (event != null){
-                if (event.equals("#publish")) {
-                    return ParseResult.PUBLISH;
-                } else if (event.equals("#removeAuthToken")) {
-                    return ParseResult.REMOVETOKEN;
-                } else if (event.equals("#setAuthToken")) {
-                    return ParseResult.SETTOKEN;
-                } else {
-//                    System.out.println("Event got called with cid "+cid);
-                    return ParseResult.EVENT;
-                }
-        }else {
+            return ParseResult.ISAUTHENTICATED;
+        } else if (event != null) {
+            if (event.equals("#publish")) {
+                return ParseResult.PUBLISH;
+            } else if (event.equals("#removeAuthToken")) {
+                return ParseResult.REMOVETOKEN;
+            } else if (event.equals("#setAuthToken")) {
+                return ParseResult.SETTOKEN;
+            } else {
+                return ParseResult.EVENT;
+            }
+        } else {
             return ParseResult.ACKRECEIVE;
         }
     }

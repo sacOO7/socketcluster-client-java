@@ -9,7 +9,6 @@ import java.util.concurrent.ThreadFactory;
 
 /**
  * Eventthread class for looping though all runables
- *
  */
 
 public class EventThread extends Thread {
@@ -44,8 +43,6 @@ public class EventThread extends Thread {
 
     /**
      * Executes a task in io.github.sac.EventThread.
-     *
-     * @param task
      */
     public static void exec(Runnable task) {
         if (isCurrent()) {
@@ -57,8 +54,6 @@ public class EventThread extends Thread {
 
     /**
      * Executes a task on the next loop in io.github.sac.EventThread.
-     *
-     * @param task
      */
     public static void nextTick(final Runnable task) {
         ExecutorService executor;
