@@ -540,8 +540,8 @@ public class Socket extends Emitter {
         return ws.getState();
     }
 
-    public Boolean isconnected(){
-        return ws.getState()==WebSocketState.OPEN;
+    public Boolean isconnected() {
+        return ws != null && ws.getState() == WebSocketState.OPEN;
     }
 
     public void disableLogging(){
