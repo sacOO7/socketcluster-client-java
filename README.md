@@ -20,7 +20,7 @@ For java
 
 ```Gradle
 dependencies {
-    compile 'io.github.sac:SocketclusterClientJava:1.7.2'
+    compile 'io.github.sac:SocketclusterClientJava:1.7.3'
 }
 ```
 for sample java examples visit [Java Demo](https://github.com/sacOO7/socketcluster-client-testing/tree/master/src/main/java)
@@ -28,7 +28,7 @@ for sample java examples visit [Java Demo](https://github.com/sacOO7/socketclust
 For android 
 
 ```Gradle
-compile ('io.github.sac:SocketclusterClientJava:1.7.2'){
+compile ('io.github.sac:SocketclusterClientJava:1.7.3'){
         exclude group :'org.json', module: 'json'
 }
 ```
@@ -74,7 +74,7 @@ Implemented using `BasicListener` interface
             }
 
             public void onSetAuthToken(String token, Socket socket) {
-                socket.setAuthToken(token);
+                System.out.println("Token is "+ token);
             }
 
             public void onAuthentication(Socket socket,Boolean status) {
