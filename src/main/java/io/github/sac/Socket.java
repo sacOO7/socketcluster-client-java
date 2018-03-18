@@ -502,6 +502,20 @@ public class Socket extends Emitter {
 
     }
 
+    public void connectAsync() {
+        try {
+            ws = factory.createSocket(URL);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ws.addExtension("permessage-deflate; client_max_window_bits");
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            ws.addHeader(entry.getKey(), entry.getValue());
+        }
+
+        ws.addListener(adapter);
+        ws.connectAsynchronously();
+    }
 
     private void reconnect() {
 

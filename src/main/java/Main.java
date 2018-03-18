@@ -49,7 +49,7 @@ public class Main {
         socket.setReconnection(new ReconnectStrategy().setDelay(3000).setMaxAttempts(10)); //Connect after each 2 seconds for 30 times
 
 
-                socket.connect();
+        socket.connectAsync();
 
 
         socket.disableLogging();
