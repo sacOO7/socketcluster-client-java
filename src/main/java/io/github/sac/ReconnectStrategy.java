@@ -39,7 +39,7 @@ public class ReconnectStrategy {
 
     Integer maxAttempts;
 
-    Integer attmptsMade;
+    Integer attemptsMade;
 
 
     public ReconnectStrategy() {
@@ -48,7 +48,7 @@ public class ReconnectStrategy {
         maxReconnectInterval = 30000;
         reconnectDecay = (float) 1;
         maxAttempts = null;  //forever
-        attmptsMade = 0;
+        attemptsMade = 0;
     }
 
     public ReconnectStrategy setMaxAttempts(Integer maxAttempts) {
@@ -61,8 +61,8 @@ public class ReconnectStrategy {
         return this;
     }
 
-    public void setAttmptsMade(Integer attmptsMade) {
-        this.attmptsMade = attmptsMade;
+    public void setAttemptsMade(Integer attemptsMade) {
+        this.attemptsMade = attemptsMade;
     }
 
     public ReconnectStrategy(int reconnectInterval, int maxReconnectInterval, float reconnectDecay, int maxAttempts) {
@@ -74,13 +74,13 @@ public class ReconnectStrategy {
         this.maxReconnectInterval = maxReconnectInterval;
         this.reconnectDecay = reconnectDecay;
         this.maxAttempts = maxAttempts;
-        attmptsMade = 0;
+        attemptsMade = 0;
     }
 
 
     public void processValues() {
-        attmptsMade++;
-        LOGGER.info("Attempt number :" + attmptsMade);
+        attemptsMade++;
+        LOGGER.info("Attempt number :" + attemptsMade);
         if (reconnectInterval < maxReconnectInterval) {
             reconnectInterval = (int) (reconnectInterval * reconnectDecay);
             if (reconnectInterval > maxReconnectInterval) {
@@ -95,7 +95,7 @@ public class ReconnectStrategy {
 
 
     public boolean areAttemptsComplete() {
-        return attmptsMade.equals(maxAttempts);
+        return attemptsMade.equals(maxAttempts);
     }
 
 }

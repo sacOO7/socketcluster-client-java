@@ -1,25 +1,14 @@
 package io.github.sac;
 
-import com.neovisionaries.ws.client.OpeningHandshakeException;
-import com.neovisionaries.ws.client.StatusLine;
-import com.neovisionaries.ws.client.WebSocket;
-import com.neovisionaries.ws.client.WebSocketAdapter;
-import com.neovisionaries.ws.client.WebSocketException;
-import com.neovisionaries.ws.client.WebSocketFactory;
-import com.neovisionaries.ws.client.WebSocketFrame;
-import com.neovisionaries.ws.client.WebSocketState;
+import com.neovisionaries.ws.client.*;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by sachin on 13/11/16.
@@ -113,8 +102,9 @@ public class Socket extends Emitter {
                  */
 
                 counter.set(1);
-                if (strategy != null)
-                    strategy.setAttmptsMade(0);
+                if (strategy != null) {
+                    strategy.setAttemptsMade(0);
+                }
 
                 JSONObject handshakeObject = new JSONObject();
                 handshakeObject.put("event", "#handshake");
@@ -132,23 +122,14 @@ public class Socket extends Emitter {
             @Override
             public void onDisconnected(WebSocket websocket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) throws Exception {
                 listener.onDisconnected(Socket.this, serverCloseFrame, clientCloseFrame, closedByServer);
-                if (strategy != null) {
-                    reconnect();
-                } else {
-                    LOGGER.info("cant reconnect , reconnection is null");
-                }
+                reconnect();
                 super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer);
             }
 
             @Override
             public void onConnectError(WebSocket websocket, WebSocketException exception) throws Exception {
                 listener.onConnectError(Socket.this, exception);
-                if (strategy != null) {
-                    reconnect();
-                } else {
-                    LOGGER.info("cant reconnect , reconnection is null");
-
-                }
+                reconnect();
                 super.onConnectError(websocket, exception);
             }
 
@@ -228,7 +209,6 @@ public class Socket extends Emitter {
             @Override
             public void onCloseFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
                 LOGGER.info("On close frame got called");
-
                 super.onCloseFrame(websocket, frame);
             }
 
@@ -493,11 +473,7 @@ public class Socket extends Emitter {
         } catch (WebSocketException e) {
             // Failed to establish a WebSocket connection.
             listener.onConnectError(Socket.this, e);
-            if (strategy != null) {
-                reconnect();
-            } else {
-                LOGGER.info("cant reconnect , reconnection is null");
-            }
+            reconnect();
         }
 
     }
@@ -518,28 +494,31 @@ public class Socket extends Emitter {
     }
 
     private void reconnect() {
-
-        if (!strategy.areAttemptsComplete()) {
-
-            final Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    if (strategy != null) {
-                        strategy.processValues();
-                        Socket.this.connect();
-                        timer.cancel();
-                        timer.purge();
-                    } else {
-                        LOGGER.info("Strategy is null. Reconnection stopped");
-                    }
-                }
-            }, strategy.getReconnectInterval());
-
-        } else {
-            strategy.setAttmptsMade(0);
+        if (strategy == null) {
+            LOGGER.info("Unable to reconnect: reconnection is null");
+            return;
         }
 
+        if (strategy.areAttemptsComplete()) {
+            strategy.setAttemptsMade(0);
+            LOGGER.info("Unable to reconnect: max reconnection attempts reached");
+            return;
+        }
+
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (strategy == null) {
+                    LOGGER.info("Unable to reconnect: reconnection is null");
+                    return;
+                }
+                strategy.processValues();
+                Socket.this.connect();
+                timer.cancel();
+                timer.purge();
+            }
+        }, strategy.getReconnectInterval());
     }
 
     public void disconnect() {
