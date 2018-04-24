@@ -522,7 +522,9 @@ public class Socket extends Emitter {
     }
 
     public void disconnect() {
-        ws.disconnect();
+        if (ws != null) {
+            ws.disconnect();
+        }
         strategy = null;
     }
 
