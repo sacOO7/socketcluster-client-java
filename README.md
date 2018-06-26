@@ -20,7 +20,7 @@ For java
 
 ```Gradle
 dependencies {
-    compile 'io.github.sac:SocketclusterClientJava:1.7.4'
+    compile 'io.github.sac:SocketclusterClientJava:1.7.5'
 }
 ```
 for sample java examples visit [Java Demo](https://github.com/sacOO7/socketcluster-client-testing/tree/master/src/main/java)
@@ -28,7 +28,7 @@ for sample java examples visit [Java Demo](https://github.com/sacOO7/socketclust
 For android 
 
 ```Gradle
-compile ('io.github.sac:SocketclusterClientJava:1.7.4'){
+compile ('io.github.sac:SocketclusterClientJava:1.7.5'){
         exclude group :'org.json', module: 'json'
 }
 ```
@@ -302,6 +302,18 @@ Implementing Pub-Sub via channels
                 }
         });    
 ```
+ 
+ 
+#### Handling logging 
+- Once logger object is received, it is very easy to set internal logging level of library, applying handler for each log messages.
+- It can be received using following code
+
+```java
+    Logger logger = socket.getLogger();
+```
+ 
+- More documentation on handling logging in custom way can be found here 
+ http://www.vogella.com/tutorials/Logging/article.html
  
 #### Handling SSL connection with server
  

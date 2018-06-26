@@ -16,7 +16,7 @@ allprojects {
 }
 
 group 'io.github.sac'
-version '1.7.4'
+version '1.7.5'
 
 
 allprojects {
@@ -44,7 +44,7 @@ publishing {
             from components.java
             groupId 'io.github.sac'
             artifactId 'SocketclusterClientJava'
-            version '1.7.4'
+            version '1.7.5'
 
             artifact sourceJar {
                 classifier "sources"
@@ -71,9 +71,9 @@ bintray{
         publicDownloadNumbers = true
 
         version {
-            name = '1.7.4'
-            desc = 'Added method to Connect asynchronously with server'
-            vcsTag = '1.7.4'
+            name = '1.7.5'
+            desc = 'Added proper internal logging, fixed disconnect null exception, added method to get internal logger'
+            vcsTag = '1.7.5'
         }
 
     }
