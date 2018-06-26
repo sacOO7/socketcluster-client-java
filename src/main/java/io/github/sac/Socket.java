@@ -1,14 +1,25 @@
 package io.github.sac;
 
-import com.neovisionaries.ws.client.*;
+import com.neovisionaries.ws.client.OpeningHandshakeException;
+import com.neovisionaries.ws.client.StatusLine;
+import com.neovisionaries.ws.client.WebSocket;
+import com.neovisionaries.ws.client.WebSocketAdapter;
+import com.neovisionaries.ws.client.WebSocketException;
+import com.neovisionaries.ws.client.WebSocketFactory;
+import com.neovisionaries.ws.client.WebSocketFrame;
+import com.neovisionaries.ws.client.WebSocketState;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 /**
  * Created by sachin on 13/11/16.
@@ -16,8 +27,7 @@ import java.util.logging.Logger;
 
 public class Socket extends Emitter {
 
-
-    private final static Logger LOGGER = Logger.getLogger(Socket.class.getName());
+    private final Logger logger = Logger.getLogger(Socket.class.getName());
 
     private AtomicInteger counter;
     private String URL;
@@ -79,6 +89,9 @@ public class Socket extends Emitter {
         this.listener = listener;
     }
 
+    public Logger getLogger(){
+        return logger;
+    }
     /**
      * used to set up TLS/SSL connection to server for more details visit neovisionaries websocket client
      */
@@ -149,7 +162,7 @@ public class Socket extends Emitter {
                     /**
                      * Message retrieval mechanism goes here
                      */
-                    LOGGER.info("Message :" + object.toString());
+                    logger.info("Message :" + object.toString());
 
 
                     try {
@@ -191,14 +204,14 @@ public class Socket extends Emitter {
                                         if (fn != null) {
                                             fn.call((String) objects[0], object.opt("error"), object.opt("data"));
                                         } else {
-                                            LOGGER.info("ack function is null with rid " + rid);
+                                            logger.warning("ack function is null with rid " + rid);
                                         }
                                     }
                                 }
                                 break;
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        logger.severe(e.toString());
                     }
 
                 }
@@ -208,14 +221,13 @@ public class Socket extends Emitter {
 
             @Override
             public void onCloseFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
-                LOGGER.info("On close frame got called");
+                logger.warning("On close frame got called");
                 super.onCloseFrame(websocket, frame);
             }
 
             @Override
             public void onSendError(WebSocket websocket, WebSocketException cause, WebSocketFrame frame) throws Exception {
-                LOGGER.info("Got send error");
-
+                logger.severe("Error while sending data " + cause.toString());
                 super.onSendError(websocket, cause, frame);
             }
 
@@ -427,7 +439,7 @@ public class Socket extends Emitter {
         try {
             ws = factory.createSocket(URL);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe(e.toString());
         }
         ws.addExtension("permessage-deflate; client_max_window_bits");
         for (Map.Entry<String, String> entry : headers.entrySet()) {
@@ -442,16 +454,17 @@ public class Socket extends Emitter {
             // A violation against the WebSocket protocol was detected
             // during the opening handshake.
 
+            logger.severe(e.toString());
             // Status line.
             StatusLine sl = e.getStatusLine();
-            LOGGER.info("=== Status Line ===");
-            LOGGER.info("HTTP Version  = \n" + sl.getHttpVersion());
-            LOGGER.info("Status Code   = \n" + sl.getStatusCode());
-            LOGGER.info("Reason Phrase = \n" + sl.getReasonPhrase());
+            logger.info("=== Status Line ===");
+            logger.info("HTTP Version  = \n" + sl.getHttpVersion());
+            logger.info("Status Code   = \n" + sl.getStatusCode());
+            logger.info("Reason Phrase = \n" + sl.getReasonPhrase());
 
             // HTTP headers.
             Map<String, List<String>> headers = e.getHeaders();
-            LOGGER.info("=== HTTP Headers ===");
+            logger.info("=== HTTP Headers ===");
             for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
                 // Header name.
                 String name = entry.getKey();
@@ -461,17 +474,16 @@ public class Socket extends Emitter {
 
                 if (values == null || values.size() == 0) {
                     // Print the name only.
-                    LOGGER.info(name);
+                    logger.info(name);
                     continue;
                 }
 
                 for (String value : values) {
                     // Print the name and the value.
-                    LOGGER.info(name + value + "\n");
+                    logger.info(name + value + "\n");
                 }
             }
         } catch (WebSocketException e) {
-            // Failed to establish a WebSocket connection.
             listener.onConnectError(Socket.this, e);
             reconnect();
         }
@@ -482,7 +494,7 @@ public class Socket extends Emitter {
         try {
             ws = factory.createSocket(URL);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe(e.toString());
         }
         ws.addExtension("permessage-deflate; client_max_window_bits");
         for (Map.Entry<String, String> entry : headers.entrySet()) {
@@ -495,13 +507,13 @@ public class Socket extends Emitter {
 
     private void reconnect() {
         if (strategy == null) {
-            LOGGER.info("Unable to reconnect: reconnection is null");
+            logger.warning("Unable to reconnect: reconnection is null");
             return;
         }
 
         if (strategy.areAttemptsComplete()) {
             strategy.setAttemptsMade(0);
-            LOGGER.info("Unable to reconnect: max reconnection attempts reached");
+            logger.warning("Unable to reconnect: max reconnection attempts reached");
             return;
         }
 
@@ -510,7 +522,7 @@ public class Socket extends Emitter {
             @Override
             public void run() {
                 if (strategy == null) {
-                    LOGGER.info("Unable to reconnect: reconnection is null");
+                    logger.warning("Unable to reconnect: reconnection is null");
                     return;
                 }
                 strategy.processValues();
@@ -546,7 +558,7 @@ public class Socket extends Emitter {
     }
 
     public void disableLogging() {
-        LogManager.getLogManager().reset();
+        logger.setLevel(Level.OFF);
     }
 
     /**
@@ -595,5 +607,11 @@ public class Socket extends Emitter {
             Socket.this.unsubscribe(channelName, ack);
             channels.remove(this);
         }
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        ws.disconnect("Client socket garbage collected, closing connection");
+        super.finalize();
     }
 }
