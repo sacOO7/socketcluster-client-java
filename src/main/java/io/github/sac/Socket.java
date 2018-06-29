@@ -4,6 +4,7 @@ import com.neovisionaries.ws.client.OpeningHandshakeException;
 import com.neovisionaries.ws.client.StatusLine;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
+import com.neovisionaries.ws.client.WebSocketCloseCode;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import com.neovisionaries.ws.client.WebSocketFrame;
@@ -60,13 +61,29 @@ public class Socket extends Emitter {
     }
 
     public Channel createChannel(String name) {
-        Channel channel = new Channel(name);
+        return createChannel(name, true);
+    }
+
+    public Channel createChannel(String name, boolean autoSubscribe) {
+        Channel channel = new Channel(name, autoSubscribe);
         channels.add(channel);
         return channel;
     }
 
     public List<Channel> getChannels() {
         return channels;
+    }
+
+    public void subscribeAllChannels() {
+        for (Channel channel : channels) {
+            channel.subscribe();
+        }
+    }
+
+    public void unsubscribeAllChannels(){
+        for (Channel channel: channels) {
+            channel.unsubscribe();
+        }
     }
 
     public Channel getChannelByName(String name) {
@@ -175,7 +192,7 @@ public class Socket extends Emitter {
 
                             case ISAUTHENTICATED:
                                 listener.onAuthentication(Socket.this, ((JSONObject) dataobject).getBoolean("isAuthenticated"));
-                                subscribeChannels();
+                                subscribeAllChannels();
                                 break;
                             case PUBLISH:
                                 Socket.this.handlePublish(((JSONObject) dataobject).getString("channel"), ((JSONObject) dataobject).opt("data"));
@@ -416,12 +433,6 @@ public class Socket extends Emitter {
     }
 
 
-    private void subscribeChannels() {
-        for (Channel channel : channels) {
-            channel.subscribe();
-        }
-    }
-
     public void setExtraHeaders(Map<String, String> extraHeaders, boolean overrideDefaultHeaders) {
         if (overrideDefaultHeaders) {
             headers.clear();
@@ -534,10 +545,23 @@ public class Socket extends Emitter {
     }
 
     public void disconnect() {
+        disconnect(WebSocketCloseCode.NORMAL, null);
+    }
+
+    public void disconnect(String closeReason) {
+        disconnect(WebSocketCloseCode.NORMAL, closeReason);
+    }
+
+    public void disconnect(int closeCode, String closeReason) {
+        disconnect(closeCode, closeReason, -1);
+    }
+
+    public void disconnect(int closeCode, String closeReason, long closeDelay) {
+        unsubscribeAllChannels();
+        strategy.setAttemptsMade(strategy.maxAttempts);
         if (ws != null) {
-            ws.disconnect();
+            ws.disconnect(closeCode, closeReason, closeDelay);
         }
-        strategy = null;
     }
 
     /**
@@ -549,9 +573,10 @@ public class Socket extends Emitter {
      * OPEN
      */
 
-    public WebSocketState getCurrentState() {
+    public WebSocketState getSocketStatus() {
         return ws.getState();
     }
+
 
     public Boolean isconnected() {
         return ws != null && ws.getState() == WebSocketState.OPEN;
@@ -569,13 +594,15 @@ public class Socket extends Emitter {
     public class Channel {
 
         String channelName;
+        boolean autoSubscribe;
 
         public String getChannelName() {
             return channelName;
         }
 
-        public Channel(String channelName) {
+        public Channel(String channelName, boolean autoSubscribe) {
             this.channelName = channelName;
+            this.autoSubscribe = autoSubscribe;
         }
 
         public void subscribe() {
@@ -600,12 +627,10 @@ public class Socket extends Emitter {
 
         public void unsubscribe() {
             Socket.this.unsubscribe(channelName);
-            channels.remove(this);
         }
 
         public void unsubscribe(Ack ack) {
             Socket.this.unsubscribe(channelName, ack);
-            channels.remove(this);
         }
     }
 
