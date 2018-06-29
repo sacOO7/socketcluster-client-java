@@ -41,6 +41,7 @@ public class Socket extends Emitter {
     private List<Channel> channels;
     private WebSocketAdapter adapter;
     private Map<String, String> headers;
+    private AuthState authState;
 
     public Socket(String URL) {
         this.URL = URL;
@@ -121,6 +122,11 @@ public class Socket extends Emitter {
         AuthToken = token;
     }
 
+    public String getAuthToken() {
+        return AuthToken;
+    }
+
+
     public WebSocketAdapter getAdapter() {
         return new WebSocketAdapter() {
 
@@ -191,7 +197,9 @@ public class Socket extends Emitter {
                         switch (Parser.parse(dataobject, event)) {
 
                             case ISAUTHENTICATED:
-                                listener.onAuthentication(Socket.this, ((JSONObject) dataobject).getBoolean("isAuthenticated"));
+                                boolean isAuthenticated = ((JSONObject) dataobject).getBoolean("isAuthenticated");
+                                authState = isAuthenticated ? AuthState.AUTHENTICATED : AuthState.UNAUTHENTICATED;
+                                listener.onAuthentication(Socket.this, isAuthenticated);
                                 subscribeAllChannels();
                                 break;
                             case PUBLISH:
@@ -632,6 +640,11 @@ public class Socket extends Emitter {
         public void unsubscribe(Ack ack) {
             Socket.this.unsubscribe(channelName, ack);
         }
+    }
+
+    public enum AuthState {
+        AUTHENTICATED,
+        UNAUTHENTICATED
     }
 
     @Override
