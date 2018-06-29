@@ -34,6 +34,8 @@ compile ('io.github.sac:SocketclusterClientJava:1.7.5'){
 ```
 for sample android demo visit [Android Demo](https://github.com/sacOO7/socketcluster-android-demo)
 
+- In case you face any problem while resolving dependencies, you can download jar from here https://dl.bintray.com/sacoo7/Maven/io/github/sac/SocketclusterClientJava/. 
+- Please report for the issue here https://github.com/sacOO7/socketcluster-client-java/issues/36
 
 [ ![Download](https://api.bintray.com/packages/sacoo7/Maven/socketcluster-client/images/download.svg) ](https://bintray.com/sacoo7/Maven/socketcluster-client/_latestVersion)
 
