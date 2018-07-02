@@ -684,6 +684,7 @@ public class Socket extends Emitter {
         NOTFOUND
     }
 
+
     @Override
     protected void finalize() throws Throwable {
         ws.disconnect("Client socket garbage collected, closing connection");
