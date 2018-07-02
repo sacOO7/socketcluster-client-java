@@ -126,6 +126,9 @@ public class Socket extends Emitter {
         return AuthToken;
     }
 
+    public AuthState getAuthState() {
+        return authState;
+    }
 
     public WebSocketAdapter getAdapter() {
         return new WebSocketAdapter() {
