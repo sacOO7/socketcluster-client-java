@@ -684,6 +684,11 @@ public class Socket extends Emitter {
         NOTFOUND
     }
 
+    public enum ChannelState {
+        SUBSCRIBED,
+        PENDING,
+        UNSUBSCRIBED
+    }
 
     @Override
     protected void finalize() throws Throwable {
