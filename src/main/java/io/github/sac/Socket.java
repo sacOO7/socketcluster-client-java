@@ -588,6 +588,29 @@ public class Socket extends Emitter {
         return ws.getState();
     }
 
+    public SocketState getConnectionState() {
+        switch (getSocketStatus()) {
+            case CREATED:
+                return SocketState.CREATED;
+            case CONNECTING:
+                return SocketState.CONNECTING;
+            case OPEN:
+                return SocketState.OPEN;
+            case CLOSING:
+                return SocketState.CLOSING;
+            case CLOSED:
+                return SocketState.CLOSED;
+        }
+
+        switch (getAuthState()) {
+            case AUTHENTICATED:
+                return SocketState.AUTHENTICATED;
+            case UNAUTHENTICATED:
+                return SocketState.UNAUTHENTICATED;
+        }
+        return SocketState.NOTFOUND;
+    }
+
 
     public Boolean isconnected() {
         return ws != null && ws.getState() == WebSocketState.OPEN;
@@ -648,6 +671,17 @@ public class Socket extends Emitter {
     public enum AuthState {
         AUTHENTICATED,
         UNAUTHENTICATED
+    }
+
+    public enum SocketState{
+        CREATED,
+        CONNECTING,
+        OPEN,
+        CLOSING,
+        CLOSED,
+        AUTHENTICATED,
+        UNAUTHENTICATED,
+        NOTFOUND
     }
 
     @Override
