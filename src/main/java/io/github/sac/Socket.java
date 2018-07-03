@@ -44,7 +44,27 @@ public class Socket extends Emitter {
     private AuthState authState;
 
     public Socket(String URL) {
+        this(URL, null);
+    }
+
+    public Socket(String URL, BasicListener listener) {
+        this(URL, listener, null);
+    }
+
+    public Socket(String URL, BasicListener listener, String authToken) {
+        this(URL, listener, authToken, null);
+    }
+
+    public Socket(String URL, BasicListener listener, String authToken, ReconnectStrategy reconnectStrategy) {
+        this(URL, listener, authToken, reconnectStrategy, false, false);
+    }
+
+    public Socket(String URL, BasicListener listener, String AuthToken, ReconnectStrategy reconnectStrategy, boolean multipleListenersEnabled, boolean multipleChannelWatchersEnabled) {
+        super(multipleListenersEnabled, multipleChannelWatchersEnabled);
         this.URL = URL;
+        this.listener = listener;
+        this.AuthToken = AuthToken;
+        strategy = reconnectStrategy;
         factory = new WebSocketFactory().setConnectionTimeout(5000);
         counter = new AtomicInteger(1);
         acks = new HashMap<>();
@@ -81,8 +101,8 @@ public class Socket extends Emitter {
         }
     }
 
-    public void unsubscribeAllChannels(){
-        for (Channel channel: channels) {
+    public void unsubscribeAllChannels() {
+        for (Channel channel : channels) {
             channel.unsubscribe();
         }
     }
@@ -107,9 +127,10 @@ public class Socket extends Emitter {
         this.listener = listener;
     }
 
-    public Logger getLogger(){
+    public Logger getLogger() {
         return logger;
     }
+
     /**
      * used to set up TLS/SSL connection to server for more details visit neovisionaries websocket client
      */
@@ -190,7 +211,6 @@ public class Socket extends Emitter {
                      */
                     logger.info("Message :" + object.toString());
 
-
                     try {
                         Object dataobject = object.opt("data");
                         Integer rid = (Integer) object.opt("rid");
@@ -217,12 +237,8 @@ public class Socket extends Emitter {
                                 listener.onSetAuthToken(token, Socket.this);
                                 break;
                             case EVENT:
-                                if (hasEventAck(event)) {
-                                    handleEmitAck(event, dataobject, ack(Long.valueOf(cid)));
-                                } else {
-                                    Socket.this.handleEmit(event, dataobject);
-
-                                }
+                                handleEmitAck(event, dataobject, ack(Long.valueOf(cid)));
+                                handleEmit(event, dataobject);
                                 break;
                             case ACKRECEIVE:
                                 if (acks.containsKey((long) rid)) {
@@ -629,6 +645,7 @@ public class Socket extends Emitter {
 
         String channelName;
         boolean autoSubscribe;
+        ChannelState channelState;
 
         public String getChannelName() {
             return channelName;
@@ -637,6 +654,7 @@ public class Socket extends Emitter {
         public Channel(String channelName, boolean autoSubscribe) {
             this.channelName = channelName;
             this.autoSubscribe = autoSubscribe;
+            this.channelState = ChannelState.UNSUBSCRIBED;
         }
 
         public void subscribe() {
@@ -673,7 +691,7 @@ public class Socket extends Emitter {
         UNAUTHENTICATED
     }
 
-    public enum SocketState{
+    public enum SocketState {
         CREATED,
         CONNECTING,
         OPEN,
