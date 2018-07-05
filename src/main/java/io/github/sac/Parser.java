@@ -9,6 +9,7 @@ import org.json.JSONObject;
  */
 public class Parser {
 
+    // todo : Probably need to add SUBSCRIBE AND UNSUBSCRIBE EVENTS FROM SERVER IN PARSERESULT
     public enum ParseResult {
         ISAUTHENTICATED,
         PUBLISH,
