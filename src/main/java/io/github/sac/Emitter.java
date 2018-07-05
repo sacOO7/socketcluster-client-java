@@ -11,6 +11,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Emitter {
 
+    public static String RAWEVENT = "raw";
+    public static String MESSAGEEVENT = "message";
+
     private boolean multipleListenersEnabled;
     private boolean multipleChannelWatchersEnabled;
 
@@ -45,6 +48,19 @@ public class Emitter {
      * @param event event name.
      * @return a reference to this object.
      */
+
+    public Emitter onRawEvent(Listener fn) {
+        return on(RAWEVENT, fn);
+    }
+
+    public Emitter onAnyMessage(Listener fn) {
+        return on(MESSAGEEVENT, fn);
+    }
+
+    public Emitter onAnyMessage(AckListener fn) {
+        return on(MESSAGEEVENT, fn);
+    }
+
     public Emitter on(String event, Listener fn) {
         return on(event, fn, multipleListenersEnabled);
     }
@@ -105,7 +121,11 @@ public class Emitter {
 
 
     public static <T> void handleEvent(ConcurrentHashMap<String, ConcurrentLinkedQueue<T>> listeners, String event, Object object, Ack ack) {
-        Iterator<T> listenerIterator = listeners.get(event).iterator();
+        InvokeListeners(event, object, ack, listeners.get(event).iterator());
+        InvokeListeners(event, object, ack, listeners.get(MESSAGEEVENT).iterator());
+    }
+
+    public static <T> void InvokeListeners(String event, Object object, Ack ack, Iterator<T> listenerIterator) {
         while (listenerIterator.hasNext()) {
             T listener = listenerIterator.next();
             if (listener instanceof Listener) {

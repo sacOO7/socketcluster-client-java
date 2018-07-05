@@ -9,6 +9,10 @@ import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import com.neovisionaries.ws.client.WebSocketFrame;
 import com.neovisionaries.ws.client.WebSocketState;
+import io.github.sac.events.AuthenticationEvent;
+import io.github.sac.events.ChannelKickoutEvent;
+import io.github.sac.events.ErrorEvent;
+import io.github.sac.events.SubscribeStateEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +46,13 @@ public class Socket extends Emitter {
     private WebSocketAdapter adapter;
     private Map<String, String> headers;
     private AuthState authState;
+
+    // Extra definition of events
+    public AuthenticationEvent authenticationEventHandler;
+    public ChannelKickoutEvent channelKickoutEventHandler;
+    public ErrorEvent errorEventHandler;
+    public SubscribeStateEvent subscribeStateEventHandler;
+
 
     public Socket(String URL) {
         this(URL, null);
@@ -255,6 +266,9 @@ public class Socket extends Emitter {
                                 break;
                         }
                     } catch (Exception e) {
+                        if (errorEventHandler != null) {
+                            errorEventHandler.onError(Socket.this, e);
+                        }
                         logger.severe(e.toString());
                     }
 
@@ -279,6 +293,10 @@ public class Socket extends Emitter {
 
     }
 
+    public Socket send(final Object object) {
+        return emit(RAWEVENT, object);
+    }
+
     public Socket emit(final String event, final Object object) {
         EventThread.exec(new Runnable() {
             public void run() {
@@ -288,6 +306,9 @@ public class Socket extends Emitter {
                     eventObject.put("data", object);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(eventObject.toString());
             }
@@ -308,6 +329,9 @@ public class Socket extends Emitter {
                     eventObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(eventObject.toString());
             }
@@ -328,6 +352,9 @@ public class Socket extends Emitter {
                     subscribeObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(subscribeObject.toString());
             }
@@ -353,6 +380,9 @@ public class Socket extends Emitter {
                     subscribeObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(subscribeObject.toString());
             }
@@ -370,6 +400,9 @@ public class Socket extends Emitter {
                     subscribeObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(subscribeObject.toString());
             }
@@ -389,6 +422,9 @@ public class Socket extends Emitter {
                     subscribeObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(subscribeObject.toString());
             }
@@ -409,6 +445,9 @@ public class Socket extends Emitter {
                     publishObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(publishObject.toString());
             }
@@ -431,6 +470,9 @@ public class Socket extends Emitter {
                     publishObject.put("cid", counter.getAndIncrement());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if (errorEventHandler != null) {
+                        errorEventHandler.onError(Socket.this, e);
+                    }
                 }
                 ws.sendText(publishObject.toString());
             }
@@ -451,6 +493,9 @@ public class Socket extends Emitter {
                             object.put("rid", cid);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            if (errorEventHandler != null) {
+                                errorEventHandler.onError(Socket.this, e);
+                            }
                         }
                         ws.sendText(object.toString());
                     }
@@ -473,17 +518,7 @@ public class Socket extends Emitter {
     }
 
     public void connect() {
-
-        try {
-            ws = factory.createSocket(URL);
-        } catch (IOException e) {
-            logger.severe(e.toString());
-        }
-        ws.addExtension("permessage-deflate; client_max_window_bits");
-        for (Map.Entry<String, String> entry : headers.entrySet()) {
-            ws.addHeader(entry.getKey(), entry.getValue());
-        }
-
+        CreateSocket();
         ws.addListener(adapter);
 
         try {
@@ -491,6 +526,9 @@ public class Socket extends Emitter {
         } catch (OpeningHandshakeException e) {
             // A violation against the WebSocket protocol was detected
             // during the opening handshake.
+            if (errorEventHandler != null) {
+                errorEventHandler.onError(Socket.this, e);
+            }
 
             logger.severe(e.toString());
             // Status line.
@@ -523,22 +561,31 @@ public class Socket extends Emitter {
             }
         } catch (WebSocketException e) {
             listener.onConnectError(Socket.this, e);
+            if (errorEventHandler != null) {
+                errorEventHandler.onError(Socket.this, e);
+            }
             reconnect();
         }
 
     }
 
-    public void connectAsync() {
+    private void CreateSocket() {
         try {
             ws = factory.createSocket(URL);
         } catch (IOException e) {
             logger.severe(e.toString());
+            if (errorEventHandler != null) {
+                errorEventHandler.onError(Socket.this, e);
+            }
         }
         ws.addExtension("permessage-deflate; client_max_window_bits");
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             ws.addHeader(entry.getKey(), entry.getValue());
         }
+    }
 
+    public void connectAsync() {
+        CreateSocket();
         ws.addListener(adapter);
         ws.connectAsynchronously();
     }
@@ -706,6 +753,22 @@ public class Socket extends Emitter {
         SUBSCRIBED,
         PENDING,
         UNSUBSCRIBED
+    }
+
+    public void setAuthenticationEventHandler(AuthenticationEvent authenticationEventHandler) {
+        this.authenticationEventHandler = authenticationEventHandler;
+    }
+
+    public void setChannelKickoutEventHandler(ChannelKickoutEvent channelKickoutEventHandler) {
+        this.channelKickoutEventHandler = channelKickoutEventHandler;
+    }
+
+    public void setErrorEventHandler(ErrorEvent errorEventHandler) {
+        this.errorEventHandler = errorEventHandler;
+    }
+
+    public void setSubscribeStateEventHandler(SubscribeStateEvent subscribeStateEventHandler) {
+        this.subscribeStateEventHandler = subscribeStateEventHandler;
     }
 
     @Override
