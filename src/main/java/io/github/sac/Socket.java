@@ -490,7 +490,7 @@ public class Socket extends Emitter {
                 reconnect();
             }
         }else{
-            logger.warning("Unable to connect: there is an active connection maybe?");
+            logger.warning("Unable to connect: there is an active connection");
         }
 
     }
@@ -511,7 +511,7 @@ public class Socket extends Emitter {
             ws.addListener(adapter);
             ws.connectAsynchronously();
         }else{
-            logger.warning("Unable to connect: there is an active connection maybe?");
+            logger.warning("Unable to connect: there is an active connection");
         }
     }
 
