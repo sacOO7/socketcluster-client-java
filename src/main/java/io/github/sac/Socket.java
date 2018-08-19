@@ -491,18 +491,25 @@ public class Socket extends Emitter {
     }
 
     public void connectAsync() {
-        try {
-            ws = factory.createSocket(URL);
-        } catch (IOException e) {
-            logger.severe(e.toString());
-        }
-        ws.addExtension("permessage-deflate; client_max_window_bits");
-        for (Map.Entry<String, String> entry : headers.entrySet()) {
-            ws.addHeader(entry.getKey(), entry.getValue());
-        }
+        if(ws == null){
+            try {
+                ws = factory.createSocket(URL);
+            } catch (IOException e) {
+                logger.severe(e.toString());
+            }
 
-        ws.addListener(adapter);
-        ws.connectAsynchronously();
+            ws.addExtension("permessage-deflate; client_max_window_bits");
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                ws.addHeader(entry.getKey(), entry.getValue());
+            }
+
+            ws.addListener(adapter);
+            ws.connectAsynchronously();
+        }else if(ws.getState() == WebSocketState.CLOSED){
+            ws.connectAsynchronously();
+        }else{
+            logger.warning("Unable to connect: there is an active connection maybe?");
+        }
     }
 
     private void reconnect() {
