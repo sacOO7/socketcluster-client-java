@@ -550,7 +550,7 @@ public class Socket extends Emitter {
      */
 
     public WebSocketState getCurrentState() {
-        return ws.getState();
+        return ws != null ? ws.getState() : null;
     }
 
     public Boolean isconnected() {
