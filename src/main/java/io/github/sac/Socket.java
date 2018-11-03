@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +38,7 @@ public class Socket extends Emitter {
     private BasicListener listener;
     private String AuthToken;
     private HashMap<Long, Object[]> acks;
-    private List<Channel> channels;
+    private ConcurrentHashMap<String, Channel> channels;
     private WebSocketAdapter adapter;
     private Map<String, String> headers;
 
@@ -46,7 +47,7 @@ public class Socket extends Emitter {
         factory = new WebSocketFactory().setConnectionTimeout(5000);
         counter = new AtomicInteger(1);
         acks = new HashMap<>();
-        channels = new ArrayList<>();
+        channels = new ConcurrentHashMap<>();
         adapter = getAdapter();
         headers = new HashMap<>();
         putDefaultHeaders();
@@ -60,20 +61,21 @@ public class Socket extends Emitter {
     }
 
     public Channel createChannel(String name) {
+        if(channels.containsKey(name)){
+            return channels.get(name);
+        }
+
         Channel channel = new Channel(name);
-        channels.add(channel);
+        channels.put(name, channel);
         return channel;
     }
 
-    public List<Channel> getChannels() {
+    public ConcurrentHashMap<String, Channel> getChannels() {
         return channels;
     }
 
     public Channel getChannelByName(String name) {
-        for (Channel channel : channels) {
-            if (channel.getChannelName().equals(name))
-                return channel;
-        }
+        channels.get(name);
         return null;
     }
 
@@ -417,8 +419,8 @@ public class Socket extends Emitter {
 
 
     private void subscribeChannels() {
-        for (Channel channel : channels) {
-            channel.subscribe();
+        for(Map.Entry<String, Channel> entry : channels.entrySet()) {
+            entry.getValue().subscribe();
         }
     }
 
