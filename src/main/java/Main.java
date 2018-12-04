@@ -1,9 +1,6 @@
-import com.neovisionaries.ws.client.WebSocketException;
-import com.neovisionaries.ws.client.WebSocketFrame;
 import io.github.sac.*;
-
-import java.util.List;
-import java.util.Map;
+import okhttp3.Headers;
+import okhttp3.Response;
 
 /**
  * Created by sachin on 8/11/16.
@@ -19,24 +16,91 @@ public class Main {
 
         socket.setListener(new BasicListener() {
 
-            public void onConnected(Socket socket,Map<String, List<String>> headers) {
-                System.out.println("Connected to endpoint");
-            }
-
-            public void onDisconnected(Socket socket,WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
-                System.out.println("Disconnected from end-point");
-            }
-
-            public void onConnectError(Socket socket,WebSocketException exception) {
-                System.out.println("Got connect error "+ exception);
-            }
 
             public void onSetAuthToken(String token, Socket socket) {
                 System.out.println("Set auth token got called");
                 socket.setAuthToken(token);
             }
 
-            public void onAuthentication(Socket socket,Boolean status) {
+            @Override
+            public void onConnected(Socket socket, Headers headers) {
+                System.out.println("Connected to endpoint");
+
+
+                socket.emit("chat","Hi");
+                socket.emit("chat", "Hi", new Ack() {
+                    @Override
+                    public void call(String eventName, Object error, Object data) {
+                        System.out.println("Got message for :"+eventName+" error is :"+error+" data is :"+data);
+                    }
+                });
+
+                socket.on("yell", new Emitter.Listener() {
+                    @Override
+                    public void call(String eventName, Object data) {
+                        System.out.println("Got message for :"+eventName+" data is :"+data);
+                    }
+                });
+
+                socket.on("yell", new Emitter.AckListener() {
+                    @Override
+                    public void call(String eventName, Object data, Ack ack) {
+                        System.out.println("Got message for :"+eventName+" data is :"+data);
+                        //sending ack back
+
+                        ack.call(eventName,"This is error","This is data");
+                    }
+                });
+//
+//
+                Socket.Channel channel = socket.createChannel("yell");
+//
+                channel.subscribe(new Ack() {
+                    @Override
+                    public void call(String channelName, Object error, Object data) {
+                        if (error==null){
+                            System.out.println("Subscribed to channel "+channelName+" successfully");
+                        }
+                    }
+                });
+
+                channel.publish("Hi sachin", new Ack() {
+                    @Override
+                    public void call(String channelName, Object error, Object data) {
+                        if (error==null){
+                            System.out.println("Published message to channel "+channelName+" successfully");
+                        }
+                    }
+                });
+
+                channel.onMessage(new Emitter.Listener() {
+                    @Override
+                    public void call(String channelName, Object data) {
+
+                        System.out.println("Got message for channel "+channelName+" data is "+data);
+                    }
+                });
+
+                channel.unsubscribe(new Ack() {
+                    @Override
+                    public void call(String name, Object error, Object data) {
+                        System.out.println("Unsubscribed successfully for channel " + name);
+                    }
+                });
+//                channel.unsubscribe();
+            }
+
+            @Override
+            public void onDisconnected(Socket socket, int code, String reason) {
+                System.out.println("Disconnected from end-point");
+            }
+
+            @Override
+            public void onConnectError(Socket socket, Throwable throwable, Response response) {
+                System.out.println("Got connect error "+  throwable.getMessage());
+            }
+
+            public void onAuthentication(Socket socket, Boolean status) {
                 if (status) {
                     System.out.println("socket is authenticated");
                 } else {
@@ -46,7 +110,7 @@ public class Main {
 
         });
 
-        socket.setReconnection(new ReconnectStrategy().setDelay(3000).setMaxAttempts(10)); //Connect after each 2 seconds for 30 times
+        socket.setReconnection(new ReconnectionStrategy(10, 3000)); //Connect after each 2 seconds for 30 times
 
 
         socket.connectAsync();
@@ -55,67 +119,6 @@ public class Main {
         socket.disableLogging();
 
 
-                socket.emit("chat","Hi");
-        socket.emit("chat", "Hi", new Ack() {
-            @Override
-            public void call(String eventName, Object error, Object data) {
-                System.out.println("Got message for :"+eventName+" error is :"+error+" data is :"+data);
-            }
-        });
-
-        socket.on("yell", new Emitter.Listener() {
-            @Override
-            public void call(String eventName, Object data) {
-                System.out.println("Got message for :"+eventName+" data is :"+data);
-            }
-        });
-
-        socket.on("yell", new Emitter.AckListener() {
-            @Override
-            public void call(String eventName, Object data, Ack ack) {
-                System.out.println("Got message for :"+eventName+" data is :"+data);
-                //sending ack back
-
-                ack.call(eventName,"This is error","This is data");
-            }
-        });
-//
-//
-        Socket.Channel channel = socket.createChannel("yell");
-//
-        channel.subscribe(new Ack() {
-            @Override
-            public void call(String channelName, Object error, Object data) {
-                if (error==null){
-                    System.out.println("Subscribed to channel "+channelName+" successfully");
-                }
-            }
-        });
-
-        channel.publish("Hi sachin", new Ack() {
-            @Override
-            public void call(String channelName, Object error, Object data) {
-                if (error==null){
-                    System.out.println("Published message to channel "+channelName+" successfully");
-                }
-            }
-        });
-
-        channel.onMessage(new Emitter.Listener() {
-            @Override
-            public void call(String channelName, Object data) {
-
-                System.out.println("Got message for channel "+channelName+" data is "+data);
-            }
-        });
-
-        channel.unsubscribe(new Ack() {
-            @Override
-            public void call(String name, Object error, Object data) {
-                System.out.println("Unsubscribed successfully");
-            }
-        });
-        channel.unsubscribe();
 
 //        channel.subscribe(new Ack() {
 //                              @Override

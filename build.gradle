@@ -80,6 +80,6 @@ bintray{
 }
 
 dependencies {
-    compile 'com.neovisionaries:nv-websocket-client:1.30'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile group: 'org.json', name: 'json', version: '20090211'
 }

@@ -1,19 +1,18 @@
 package io.github.sac;
 
-import com.neovisionaries.ws.client.WebSocketException;
-import com.neovisionaries.ws.client.WebSocketFrame;
-import java.util.List;
-import java.util.Map;
+import okhttp3.Headers;
+import okhttp3.Response;
 
 /**
  * Created by sachin on 13/11/16.
  */
 public interface BasicListener {
-    void onConnected(Socket socket, Map<String, List<String>> headers);
 
-    void onDisconnected(Socket socket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer);
+    void onConnected(Socket socket, Headers headers);
 
-    void onConnectError(Socket socket, WebSocketException exception);
+    void onDisconnected(Socket socket, int code, String reason);
+
+    void onConnectError(Socket socket, Throwable throwable, Response response);
 
     void onAuthentication(Socket socket, Boolean status);
 
