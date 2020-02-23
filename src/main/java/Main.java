@@ -55,7 +55,8 @@ public class Main {
         socket.disableLogging();
 
 
-                socket.emit("chat","Hi");
+        socket.emit("chat","Hi");
+
         socket.emit("chat", "Hi", new Ack() {
             @Override
             public void call(String eventName, Object error, Object data) {
@@ -92,6 +93,12 @@ public class Main {
             }
         });
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         channel.publish("Hi sachin", new Ack() {
             @Override
             public void call(String channelName, Object error, Object data) {
@@ -112,10 +119,10 @@ public class Main {
         channel.unsubscribe(new Ack() {
             @Override
             public void call(String name, Object error, Object data) {
-                System.out.println("Unsubscribed successfully");
+                System.out.println("Unsubscribed to channel successfully");
             }
         });
-        channel.unsubscribe();
+//        channel.unsubscribe();
 
 //        channel.subscribe(new Ack() {
 //                              @Override
