@@ -1,11 +1,10 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
+plugins {
+    id "com.jfrog.bintray" version "1.8.4"
+    id 'java'
 }
 
-plugins {
-    id "com.jfrog.bintray" version "1.7"
+repositories {
+    jcenter()
 }
 
 allprojects {
