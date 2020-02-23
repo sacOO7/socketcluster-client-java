@@ -148,24 +148,22 @@ public class Socket extends Emitter {
                 super.onConnectError(websocket, exception);
             }
 
+            @Override
+            public void onTextMessage(WebSocket websocket, String text) throws Exception {
+                if (text == null) {
+                    websocket.sendText("");
+                }
+                super.onTextMessage(websocket, text);
+            }
 
             @Override
             public void onFrame(WebSocket websocket, WebSocketFrame frame) throws Exception {
 
-                if (frame.getPayloadText().equalsIgnoreCase("#1")) {
-                    /**
-                     *  PING-PONG logic goes here
-                     */
-                    websocket.sendText("#2");
-                } else {
-
                     JSONObject object = new JSONObject(frame.getPayloadText());
-
                     /**
                      * Message retrieval mechanism goes here
                      */
                     logger.info("Message :" + object.toString());
-
 
                     try {
                         Object dataobject = object.opt("data");
@@ -215,8 +213,6 @@ public class Socket extends Emitter {
                     } catch (Exception e) {
                         logger.severe(e.toString());
                     }
-
-                }
                 super.onFrame(websocket, frame);
             }
 
