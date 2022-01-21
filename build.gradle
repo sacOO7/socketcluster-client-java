@@ -1,10 +1,9 @@
 plugins {
-    id "com.jfrog.bintray" version "1.8.4"
-    id 'java'
+    id 'java-library'
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 allprojects {
@@ -14,70 +13,14 @@ allprojects {
     }
 }
 
-group 'io.github.sac'
-version '2.0.0'
-
-
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     apply plugin: 'java'
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-}
-
-task sourceJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allJava
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            from components.java
-            groupId 'io.github.sac'
-            artifactId 'SocketclusterClientJava'
-            version this.version
-
-            artifact sourceJar {
-                classifier "sources"
-            }
-
-            artifact javadocJar {
-                classifier "javadoc"
-            }
-        }
-    }
-}
-
-
-bintray{
-    user=System.getenv('BINTRAY_USER')
-    key=System.getenv('BINTRAY_API_KEY')
-//    configurations = ['archives']
-    publications = ['MyPublication']
-    pkg {
-        repo = 'Maven'
-        name = 'socketcluster-client'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/sacOO7/socketcluster-client-java.git'
-        publicDownloadNumbers = true
-
-        version {
-            name = this.version
-            desc = 'Fixed ping pong isse in accordance with new sc release'
-            vcsTag = this.version
-        }
-    }
 }
 
 dependencies {
-    compile 'com.neovisionaries:nv-websocket-client:1.30'
-    compile group: 'org.json', name: 'json', version: '20090211'
+    api "com.neovisionaries:nv-websocket-client:2.14"
+    implementation group: 'org.json', name: 'json', version: '20180813'
 }
