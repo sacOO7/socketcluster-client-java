@@ -76,6 +76,7 @@ public class Socket extends Emitter {
 
     public Channel getChannelByName(String name) {
         return channels.get(name);
+        // return
     }
 
     public void seturl(String url) {
