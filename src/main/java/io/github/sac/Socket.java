@@ -314,6 +314,25 @@ public class Socket extends Emitter {
         return this;
     }
 
+    private Socket subscribe(final String channel, JSONObject object, final Ack ack) {
+        EventThread.exec(new Runnable() {
+            public void run() {
+                JSONObject subscribeObject = new JSONObject();
+                try {
+                    subscribeObject.put("event", "#subscribe");
+                    acks.put(counter.longValue(), getAckObject(channel, ack));
+                    object.put("channel", channel);
+                    subscribeObject.put("data", object);
+                    subscribeObject.put("cid", counter.getAndIncrement());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                ws.sendText(subscribeObject.toString());
+            }
+        });
+        return this;
+    }
+
     private Socket unsubscribe(final String channel) {
         EventThread.exec(new Runnable() {
             public void run() {
@@ -582,6 +601,10 @@ public class Socket extends Emitter {
 
         public void subscribe(Ack ack) {
             Socket.this.subscribe(channelName, ack);
+        }
+
+        public void subscribe(JSONObject object, Ack ack) {
+            Socket.this.subscribe(channelName, object, ack);
         }
 
         public void onMessage(Listener listener) {
